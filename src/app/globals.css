@@ -120,3 +120,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* For WebKit-based browsers */
+::-webkit-scrollbar {
+  width: 12px; /* Adjust scrollbar width here */
+}
+::-webkit-scrollbar-track {
+  background: transparent; /* Remove background color */
+}
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey; /* Customize the scrollbar color */
+  border-radius: 10px; /* Roundness of the scrollbar */
+  border: 3px solid transparent; /* Space around the thumb */
+}
+/* For Firefox browsers */
+* {
+  scrollbar-width: thin; /* Adjust scrollbar width */
+  scrollbar-color: darkgrey transparent; /* Customize scrollbar and track color */
+}
