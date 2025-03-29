@@ -170,12 +170,12 @@ p {
 }
 
 pre {
-  background-color: black;
+  background-color: #24292e;
   border-radius: 0.5rem;
   overflow-x: auto;
   padding: 1rem;
   margin: 1.5rem 0;
-  line-height: 1;
+  line-height: 0.3;
 }
 
 pre::-webkit-scrollbar {
@@ -191,15 +191,16 @@ code {
   font-size: 14px;
   padding: 0.2em 0.4em;
   border-radius: 0.3em;
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-400);
 }
 
 pre code {
   background-color: transparent;
   padding: 0;
+  margin: 0;
   border: none;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1;
 }
 
 pre code > span .sh__token--identifier {
@@ -211,20 +212,13 @@ code:not(pre code) span {
   color: black !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  code {
-    font-family: "Menlo", "Monaco", "Courier New", monospace;
-    font-size: 14px;
-    padding: 0.2em 0.4em;
-    border-radius: 0.3em;
-    background-color: var(--color-zinc-800);
-  }
-
-  code:not(pre code) span {
-    color: var(--color-zinc-100) !important;
-  }
-}
-
 pre code span {
   font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }

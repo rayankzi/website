@@ -14,8 +14,8 @@ export default async function Home() {
           <span className="font-medium">Hi there 👋</span>
 
           <p className="text-low-contrast-text">
-            I&apos;m a full stack engineer who&apos;s passionate about building
-            amazing software.
+            I&apos;m an incoming freshman @ ASU who&apos;s passionate about
+            building amazing software.
           </p>
 
           <p className="text-low-contrast-text">
