@@ -1,4 +1,4 @@
-import { postMetadata } from "@/lib/posts";
+import { postMetadata } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 import { Post } from "@/types";
 import { Link } from "next-view-transitions";

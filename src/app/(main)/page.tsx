@@ -3,9 +3,11 @@ import { ProjectsList } from "@/components/projects-list";
 import { Avatar } from "@/components/ui/avatar";
 import { Link } from "next-view-transitions";
 
+// TODO: do sitemap and robots after deployment
+
 export default async function Home() {
   return (
-    <main className="flex flex-col gap-16 md:gap-24">
+    <main className="flex flex-col gap-16">
       <div className="flex flex-col gap-4">
         <div className="block md:hidden">
           <Avatar width={56} height={56} />

@@ -1,4 +1,14 @@
 import { Link } from "next-view-transitions";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Image from "next/image";
+import { ProjectItem } from "@/types";
+import { projectsData } from "@/lib/data";
 
 export function ProjectsList() {
   return (
@@ -9,9 +19,16 @@ export function ProjectsList() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="transition duration-200 flex flex-col">
-          {/* List Item */}
-          <ProjectItem />
+        <div className="transition duration-200 flex flex-col gap-8 md:flex-row">
+          {projectsData.map(({ title, description, href, image }) => (
+            <ProjectCard
+              key={title}
+              title={title}
+              description={description}
+              href={href}
+              image={image}
+            />
+          ))}
         </div>
 
         <Link
@@ -28,18 +45,25 @@ export function ProjectsList() {
   );
 }
 
-export function ProjectItem() {
+export function ProjectCard({ title, description, href, image }: ProjectItem) {
   return (
-    <Link
-      href="/blog/main"
-      className="flex py-6 gap-4 items-center no-underline hover:bg-[#191919] transition-all duration-200 rounded-md hover:border-[#222222] hover:px-3 hover:-mx-3"
-    >
-      <div className="flex w-full flex-col items-start justify-between gap-1 md:flex-row md:items-center">
-        <span>Blog Post Name</span>
-        <span className="font-regular text-sm text-low-contrast-text">
-          Blog Post Date
-        </span>
-      </div>
+    <Link href={href} className="w-full">
+      <Card className="w-full hover:bg-accent">
+        <CardContent>
+          <div className="relative w-full aspect-video mx-auto rounded-lg overflow-hidden">
+            <Image
+              src={image.url}
+              alt={image.alt}
+              fill
+              className="object-cover"
+            />
+          </div>
+        </CardContent>
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+      </Card>
     </Link>
   );
 }

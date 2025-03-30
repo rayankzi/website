@@ -1,5 +1,5 @@
 import { BlogPostItem } from "@/components/blog-post-list";
-import { postMetadata } from "@/lib/posts";
+import { postMetadata } from "@/lib/data";
 
 export default function BlogPostPage() {
   return (
@@ -16,10 +16,6 @@ export default function BlogPostPage() {
         <span className="font-medium text-xl">Past Posts</span>
 
         <div className="flex flex-col">
-          {/* {letters.map((letter) => (
-            <ListItem item={letter} kind="letters" key={letter.slug} />
-          ))} */}
-
           {postMetadata.map((post) => (
             <BlogPostItem
               key={post.title}

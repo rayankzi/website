@@ -1,4 +1,4 @@
-import { Post } from "@/types";
+import { Post, ProjectItem } from "@/types";
 
 export const postMetadata: Post[] = [
   {
@@ -55,5 +55,26 @@ export const postMetadata: Post[] = [
     title: "Authentication using Metamask Wallets in Next JS",
     href: "/blog/next-thirdweb-metamask-auth",
     date: "01/18/2022",
+  },
+];
+
+export const projectsData: ProjectItem[] = [
+  {
+    title: "Immerse",
+    description: "A chrome extension for minimizing student distractions",
+    image: {
+      url: "/images/projects/immerse-preview.png",
+      alt: "An screenshot of Immerse app",
+    },
+    href: "/projects/immerse",
+  },
+  {
+    title: "Taskmaster",
+    description: "An all-in-one task management tool. For everyone",
+    image: {
+      url: "/images/projects/taskmaster-preview.png",
+      alt: "An screenshot of Taskmaster app",
+    },
+    href: "/projects/taskmaster",
   },
 ];

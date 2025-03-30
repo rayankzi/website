@@ -13,12 +13,14 @@ import { Link } from "next-view-transitions";
 export function NavMenu() {
   return (
     <header className="flex items-center justify-between py-4 px-7 border-b border-gray-200 dark:border-gray-700 md:hidden">
-      <div className="space-y-1">
-        <span className="font-medium text-high-contrast-text z-100">
-          Rayan Kazi
-        </span>
-        <p>Software Engineer</p>
-      </div>
+      <Link href="/" className="cursor-pointer">
+        <div className="space-y-1">
+          <span className="font-medium text-high-contrast-text z-100">
+            Rayan Kazi
+          </span>
+          <p>Software Engineer</p>
+        </div>
+      </Link>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
