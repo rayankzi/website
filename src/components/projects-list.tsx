@@ -10,39 +10,45 @@ import Image from "next/image";
 import { ProjectItem } from "@/types";
 import { projectsData } from "@/lib/data";
 
-export function ProjectsList() {
-  return (
-    <div className="flex flex-col gap-4">
-      <div className="pb-1">
-        <span className="text-lg font-medium">Personal Projects</span>
-        <p>My best work</p>
-      </div>
-
+export function ProjectsList({ isOverview }: { isOverview: boolean }) {
+  if (isOverview) {
+    return (
       <div className="flex flex-col gap-4">
-        <div className="transition duration-200 flex flex-col gap-8 md:flex-row">
-          {projectsData.map(({ title, description, href, image }) => (
-            <ProjectCard
-              key={title}
-              title={title}
-              description={description}
-              href={href}
-              image={image}
-            />
-          ))}
+        <div className="pb-1">
+          <span className="text-lg font-medium">Personal Projects</span>
+          <p>My best work</p>
         </div>
 
-        <Link
-          href="/projects"
-          className="group flex items-center gap-1 text-low-contrast-text transition-all duration-300 ease-in-out hover:text-high-contrast-text"
-        >
-          View all
-          <span className="transition-transform group-hover:translate-x-1 ml-1">
-            {`→`}
-          </span>{" "}
-        </Link>
+        <div className="flex flex-col gap-4">
+          <div className="transition duration-200 flex flex-col gap-8 md:flex-row">
+            {projectsData
+              .slice(0, 2)
+              .map(({ title, description, href, image }) => (
+                <ProjectCard
+                  key={title}
+                  title={title}
+                  description={description}
+                  href={href}
+                  image={image}
+                />
+              ))}
+          </div>
+
+          <Link
+            href="/projects"
+            className="group flex items-center gap-1 text-low-contrast-text transition-all duration-300 ease-in-out hover:text-high-contrast-text"
+          >
+            View all
+            <span className="transition-transform group-hover:translate-x-1 ml-1">
+              {`→`}
+            </span>{" "}
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div>hi</div>;
+  }
 }
 
 export function ProjectCard({ title, description, href, image }: ProjectItem) {

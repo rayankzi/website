@@ -10,7 +10,7 @@ export default async function Home() {
     <main className="flex flex-col gap-16">
       <Introduction />
       <BlogPostList isOverview />
-      <ProjectsList />
+      <ProjectsList isOverview />
       <ContactMe />
     </main>
   );
