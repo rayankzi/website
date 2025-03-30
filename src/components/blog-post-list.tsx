@@ -26,15 +26,17 @@ export function BlogPostList({ isOverview }: { isOverview: boolean }) {
           ))}
         </div>
 
-        <Link
-          href="/blog"
-          className="group flex items-center gap-1 text-low-contrast-text transition-all duration-300 ease-in-out hover:text-high-contrast-text"
-        >
-          View all
-          <span className="transition-transform group-hover:translate-x-1 ml-1">
-            {`→`}
-          </span>{" "}
-        </Link>
+        {isOverview && (
+          <Link
+            href="/blog"
+            className="group flex items-center gap-1 text-low-contrast-text transition-all duration-300 ease-in-out hover:text-high-contrast-text"
+          >
+            View all
+            <span className="transition-transform group-hover:translate-x-1 ml-1">
+              {`→`}
+            </span>{" "}
+          </Link>
+        )}
       </div>
     </div>
   );
