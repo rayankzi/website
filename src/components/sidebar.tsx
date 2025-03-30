@@ -3,7 +3,8 @@
 import { MenuItem } from "@/types";
 import { usePathname } from "next/navigation";
 import { Avatar } from "@/components/ui/avatar";
-import { Link } from "next-view-transitions";
+import { Link as TransitionLink } from "next-view-transitions";
+import Link from "next/link";
 
 const menuItems: MenuItem[] = [
   {
@@ -73,15 +74,29 @@ export function SidebarLink({
   children: React.ReactNode;
   prefetch?: boolean;
 }) {
-  return (
-    <Link
-      className={`flex items-center gap-2 py-1 hover:text-high-contrast-text transition-colors duration-200 ${
-        active ? "text-high-contrast-text" : "text-low-contrast-text"
-      }`}
-      href={href}
-      prefetch={prefetch}
-    >
-      {children}
-    </Link>
-  );
+  if (href === "/#connect") {
+    return (
+      <Link
+        className={`flex items-center gap-2 py-1 hover:text-high-contrast-text transition-colors duration-200 ${
+          active ? "text-high-contrast-text" : "text-low-contrast-text"
+        }`}
+        href={href}
+        prefetch={prefetch}
+      >
+        {children}
+      </Link>
+    );
+  } else {
+    return (
+      <TransitionLink
+        className={`flex items-center gap-2 py-1 hover:text-high-contrast-text transition-colors duration-200 ${
+          active ? "text-high-contrast-text" : "text-low-contrast-text"
+        }`}
+        href={href}
+        prefetch={prefetch}
+      >
+        {children}
+      </TransitionLink>
+    );
+  }
 }
