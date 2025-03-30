@@ -1,4 +1,4 @@
-import { ArrowLeft } from "lucide-react";
+import { formatDate, formatDateToAgo } from "@/lib/utils";
 import { Link } from "next-view-transitions";
 
 export function BackLink({
@@ -21,12 +21,11 @@ export function BackLink({
   );
 }
 
-// TODO: fix this
-export function PostDateRenderer() {
+export function PostDateRenderer({ date }: { date: string }) {
   return (
     <div className="mb-4">
       <span className="text-low-contrast-text text-sm">
-        Aug 1, 2023 • 8mo ago
+        {`${formatDate(date)} • ${formatDateToAgo(date)}`}
       </span>
     </div>
   );
