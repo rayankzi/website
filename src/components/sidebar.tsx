@@ -2,8 +2,8 @@
 
 import { MenuItem } from "@/types";
 import { usePathname } from "next/navigation";
-import { SidebarLink } from "@/components/sidebar-link";
 import { Avatar } from "@/components/ui/avatar";
+import { Link } from "next-view-transitions";
 
 const menuItems: MenuItem[] = [
   {
@@ -59,5 +59,29 @@ export function Sidebar() {
         </ul>
       </nav>
     </aside>
+  );
+}
+
+export function SidebarLink({
+  href,
+  active = false,
+  prefetch = true,
+  children,
+}: {
+  href: string;
+  active: boolean;
+  children: React.ReactNode;
+  prefetch?: boolean;
+}) {
+  return (
+    <Link
+      className={`flex items-center gap-2 py-1 hover:text-high-contrast-text transition-colors duration-200 ${
+        active ? "text-high-contrast-text" : "text-low-contrast-text"
+      }`}
+      href={href}
+      prefetch={prefetch}
+    >
+      {children}
+    </Link>
   );
 }
