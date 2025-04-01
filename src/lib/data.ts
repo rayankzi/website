@@ -101,3 +101,39 @@ export const projectsData: ProjectItem[] = [
     href: "/projects/taskmaster",
   },
 ];
+
+export const experienceData = [
+  {
+    time: "Aug 2024 - Current",
+    place: "Grand Canyon University",
+    position: "Independent Researcher",
+    shortDescription:
+      "Researching how AI generates phishing emails and determining which LLM (OpenAI, Claude, Gemini) generates the most convincing emails.",
+    longBullets: [
+      "Investigating how different AI models generate phishing emails",
+      "Wrote 5000 word research paper as final product",
+      "Gave 20 minute presentation to multiple crowds about research results",
+    ],
+  },
+  {
+    time: "Jun 2024 - Current",
+    place: "We Care Act NYC",
+    position: "IT Member",
+    shortDescription:
+      "Developed new CRM for college consulting subsidiary and maintaining current We Care Act website.",
+    longBullets: [
+      "Develop and maintain EcoAccess website used by 100s of students and donators with Next JS and Tailwind",
+      "Implement over 5 key features in new CRM for college consulting subsidiary",
+      "Led development of internal project for tracking 50+ donation and student computer requests",
+    ],
+  },
+  {
+    time: "Jun 2023 - Aug 2023",
+    place: "SitePoint",
+    position: "Guest Author",
+    longBullets: [
+      "Produced articles on JavaScript, Next JS, and other web development technology read by over 10,000 developers",
+      "Integrated SEO best practices on SitePoint blog to promote course platform",
+    ],
+  },
+];
