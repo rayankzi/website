@@ -21,7 +21,7 @@ export function ExperienceList({ isOverview }: { isOverview?: boolean }) {
                   <p className="text-sm">{position}</p>
                 </div>
 
-                <span className="text-slate-100">{shortDescription}</span>
+                <p>{shortDescription}</p>
               </div>
             ))}
         </div>

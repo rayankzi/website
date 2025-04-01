@@ -104,15 +104,26 @@ export const projectsData: ProjectItem[] = [
 
 export const experienceData = [
   {
+    time: "Mar 2025 - Current",
+    place: "Career Chats",
+    position: "National Officer",
+    shortDescription:
+      "Conducting interviews with indsutry professionals and developed field guide for high schoolers interested in AI.",
+    longBullets: [
+      "Conducting interviews with industry professionals to gain career insights",
+      "Developed 20 page field guide on how high schoolers can get started with AI/ML",
+    ],
+  },
+  {
     time: "Aug 2024 - Current",
     place: "Grand Canyon University",
     position: "Independent Researcher",
     shortDescription:
-      "Researching how AI generates phishing emails and determining which LLM (OpenAI, Claude, Gemini) generates the most convincing emails.",
+      "Investigated how different commercial LLMs like ChatGPT, Claude, and Gemini generate phishing emails.",
     longBullets: [
-      "Investigating how different AI models generate phishing emails",
-      "Wrote 5000 word research paper as final product",
-      "Gave 20 minute presentation to multiple crowds about research results",
+      "Investigated how different commercial LLMs like ChatGPT, Claude, and Gemini generate phishing emails",
+      // TODO: add stuff about findings of research
+      "Presented findings in 5000 word research paper and 20 minute presentation given to multiple crowds",
     ],
   },
   {

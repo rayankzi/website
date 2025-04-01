@@ -7,7 +7,7 @@ export default function ProjectsPage() {
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-medium">Personal Projects</h1>
-        <p>This is some of the stuff I build for fun.</p>
+        <p>This is some of the stuff I build (or have helped build) for fun.</p>
       </div>
 
       <div className="flex flex-col gap-4">
