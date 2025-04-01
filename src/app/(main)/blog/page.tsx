@@ -1,6 +1,10 @@
 import { BlogPostItem } from "@/components/blog-post-list";
 import { postMetadata } from "@/lib/data";
 
+export const metadata = {
+  title: "Blog",
+};
+
 export default function BlogPostPage() {
   return (
     <div className="flex flex-col gap-8">

@@ -1,5 +1,9 @@
 import { ExperienceList } from "@/components/experience-list";
 
+export const metadata = {
+  title: "Experience",
+};
+
 export default function ExperiencePage() {
   return (
     <div className="flex flex-col gap-8">
