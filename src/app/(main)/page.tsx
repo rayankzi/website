@@ -1,5 +1,6 @@
 import { BlogPostList } from "@/components/blog-post-list";
 import { ContactMe } from "@/components/contact-me";
+import { ExperienceList } from "@/components/experience-list";
 import { Introduction } from "@/components/intro";
 import { ProjectsList } from "@/components/projects-list";
 
@@ -11,6 +12,7 @@ export default async function Home() {
       <Introduction />
       <BlogPostList isOverview />
       <ProjectsList isOverview />
+      <ExperienceList isOverview />
       <ContactMe />
     </main>
   );

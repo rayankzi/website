@@ -1,29 +1,10 @@
 "use client";
 
-import { MenuItem } from "@/types";
 import { usePathname } from "next/navigation";
 import { Avatar } from "@/components/ui/avatar";
+import { menuItems } from "@/lib/data";
 import { Link as TransitionLink } from "next-view-transitions";
 import Link from "next/link";
-
-const menuItems: MenuItem[] = [
-  {
-    href: "/",
-    name: "Home",
-  },
-  {
-    href: "/#connect",
-    name: "Contact",
-  },
-  {
-    href: "/blog",
-    name: "Blog",
-  },
-  {
-    href: "/projects",
-    name: "Projects",
-  },
-];
 
 export function Sidebar() {
   const pathname = usePathname();

@@ -1,4 +1,27 @@
-import { Post, ProjectItem } from "@/types";
+import { MenuItem, Post, ProjectItem } from "@/types";
+
+export const menuItems: MenuItem[] = [
+  {
+    href: "/",
+    name: "Home",
+  },
+  {
+    href: "/#connect",
+    name: "Contact",
+  },
+  {
+    href: "/blog",
+    name: "Blog",
+  },
+  {
+    href: "/projects",
+    name: "Projects",
+  },
+  {
+    href: "/experience",
+    name: "Experience",
+  },
+];
 
 export const postMetadata: Post[] = [
   {
