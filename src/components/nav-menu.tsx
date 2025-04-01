@@ -46,6 +46,11 @@ export function NavMenu() {
               Projects
             </Link>
           </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/experience" className="cursor-pointer">
+              Experience
+            </Link>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>

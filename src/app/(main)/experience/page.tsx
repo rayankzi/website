@@ -10,6 +10,7 @@ export default function ExperiencePage() {
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-medium">Work Experience</h1>
         <p>
+          {/* TODO: add resume later */}
           What I&apos;ve done in the CS industry. My resume can be found here.
         </p>
       </div>

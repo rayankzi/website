@@ -2,6 +2,7 @@ import React from "react";
 import { NavMenu } from "@/components/nav-menu";
 import { Sidebar } from "@/components/sidebar";
 import { ViewTransitions } from "next-view-transitions";
+import { Footer } from "@/components/footer";
 
 export default function MainLayout({
   children,
@@ -17,7 +18,7 @@ export default function MainLayout({
         <div className="flex h-min w-full flex-col gap-16 overflow-visible py-8 md:gap-24 md:py-20">
           {children}
 
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </div>
     </ViewTransitions>
