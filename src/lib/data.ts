@@ -1,4 +1,4 @@
-import { MenuItem, Post, ProjectItem } from "@/types";
+import { MenuItem, NoteItem, Post, ProjectItem } from "@/types";
 
 export const menuItems: MenuItem[] = [
   {
@@ -20,6 +20,10 @@ export const menuItems: MenuItem[] = [
   {
     href: "/experience",
     name: "Experience",
+  },
+  {
+    href: "/notes",
+    name: "Notes",
   },
 ];
 
@@ -146,5 +150,13 @@ export const experienceData = [
       "Produced articles on JavaScript, Next JS, and other web development technology read by over 10,000 developers",
       "Integrated SEO best practices on SitePoint blog to promote course platform",
     ],
+  },
+];
+
+export const notesMetadata: NoteItem[] = [
+  {
+    title: "Test Note",
+    href: "/notes/test-note",
+    date: "04/01/2025",
   },
 ];

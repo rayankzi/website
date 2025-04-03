@@ -1,7 +1,8 @@
 # Todos
 
-- add main page stuff
-- add mdx
+TODO:
+
 - add robots
 - add sitemap
 - add rss feed
+- add umami analytics

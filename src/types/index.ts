@@ -9,6 +9,8 @@ export interface Post {
   date: string;
 }
 
+export interface NoteItem extends Post {}
+
 export interface ProjectItem {
   title: string;
   description: string;
