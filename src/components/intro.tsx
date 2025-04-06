@@ -1,5 +1,6 @@
 import { Avatar } from "@/components/ui/avatar";
 import { Link } from "next-view-transitions";
+import NextLink from "next/link";
 
 export function Introduction() {
   return (
@@ -8,11 +9,18 @@ export function Introduction() {
         <Avatar width={56} height={56} />
       </div>
       <div className="flex flex-col gap-2">
-        <span className="font-medium text-lg">Hi there 👋</span>
+        <span className="font-medium text-lg">Hi there, I&apos;m Rayan 👋</span>
 
         <p className="text-low-contrast-text">
-          I&apos;m an incoming freshman @ Barrett (ASU's honors college)
-          who&apos;s passionate about building amazing software.
+          I&apos;m a full stack developer from Phoenix and studying computer
+          science student @{" "}
+          <NextLink
+            href="https://barretthonors.asu.edu/"
+            target="_blank"
+            className="transition duration-200 hover:opacity-90 text-high-contrast-text"
+          >
+            ASU
+          </NextLink>{" "}
         </p>
 
         <p className="text-low-contrast-text">
