@@ -112,7 +112,7 @@ export const experienceData = [
     place: "Career Chats",
     position: "National Officer",
     shortDescription:
-      "Conducting interviews with CS professionals and developing guides for high schoolers interested in AI.",
+      "National Officer. Conducting interviews with CS professionals and developing guides for high schoolers interested in AI.",
     longBullets: [
       "Conducting interviews with CS professionals to gain career insights",
       "Developed 20 page field guide on how high schoolers can get started with AI/ML",
@@ -123,7 +123,7 @@ export const experienceData = [
     place: "Grand Canyon University",
     position: "Independent Researcher",
     shortDescription:
-      "Investigating how different commercial LLMs generate phishing emails.",
+      "Independent Researcher. Investigating how different commercial LLMs generate phishing emails.",
     longBullets: [
       "Investigated how different commercial LLMs like ChatGPT, Claude, and Gemini generate phishing emails",
       // TODO: add stuff about findings of research
