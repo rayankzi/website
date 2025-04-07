@@ -5,7 +5,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { experienceData } from "@/lib/data";
-import React from "react";
 
 export function ExperienceAccordion({ isOverview }: { isOverview?: boolean }) {
   const data = isOverview ? experienceData.slice(0, 2) : experienceData;

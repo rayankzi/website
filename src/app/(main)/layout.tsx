@@ -1,8 +1,7 @@
-import React from "react";
 import { NavMenu } from "@/components/nav-menu";
 import { Sidebar } from "@/components/sidebar";
-import { ViewTransitions } from "next-view-transitions";
 import { Footer } from "@/components/footer";
+import { ViewTransitions } from "next-view-transitions";
 
 export default function MainLayout({
   children,

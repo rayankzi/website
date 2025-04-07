@@ -1,6 +1,5 @@
 import { ProjectCard } from "@/components/projects-list";
 import { projectsData } from "@/lib/data";
-import React from "react";
 
 export const metadata = {
   title: "Projects",

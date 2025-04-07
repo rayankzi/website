@@ -1,5 +1,5 @@
 import { BlogPostItem as NoteItem } from "@/components/blog-post-list";
-import { notesMetadata, postMetadata } from "@/lib/data";
+import { notesMetadata } from "@/lib/data";
 
 export const metadata = {
   title: "Notes",
