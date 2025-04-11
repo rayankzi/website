@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { siteMetadata } from "@/lib/data";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Rayan Kazi",
+    default: siteMetadata.title,
     template: "%s | Rayan Kazi",
   },
-  description: "University student, software engineer, passionate builder",
+  description: siteMetadata.description,
 };
 
 // TODO: change metadata

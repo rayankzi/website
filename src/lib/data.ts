@@ -1,5 +1,11 @@
 import { MenuItem, Post, ProjectItem } from "@/types";
 
+export const siteMetadata = {
+  title: "Rayan Kazi",
+  description: "University student, software engineer, passionate builder",
+  url: "https://rayankazi.dev",
+};
+
 export const menuItems: MenuItem[] = [
   {
     href: "/",
