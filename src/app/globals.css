@@ -41,6 +41,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --breakpoint-xs: 30rem;
 
   --color-low-contrast-text: var(--low-contrast-text);
   /* --muted-text: hsla(0, 0%, 38%, 1); */

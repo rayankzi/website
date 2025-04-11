@@ -22,7 +22,7 @@ export function ExperienceAccordion({ isOverview }: { isOverview?: boolean }) {
               {entry.place}{" "}
             </span>
 
-            <span className="mr-auto text-low-contrast-text font-normal">
+            <span className="mr-auto text-low-contrast-text font-normal hidden xs:block">
               {`(${entry.time})`}
             </span>
           </AccordionTrigger>
@@ -33,6 +33,9 @@ export function ExperienceAccordion({ isOverview }: { isOverview?: boolean }) {
               <ul className="ml-6 list-disc">
                 <li className="pl-1 text-high-contrast-text mb-2 font-semibold">
                   {entry.position}
+                </li>
+                <li className="pl-1 text-high-contrast-text mb-2 font-semibold xs:hidden">
+                  {entry.time}
                 </li>
                 {entry.longBullets.map((bullet, index) => (
                   <li className="pl-1 text-low-contrast-text mb-2" key={index}>
