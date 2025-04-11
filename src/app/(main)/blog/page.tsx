@@ -1,11 +1,13 @@
 import { BlogPostItem } from "@/components/blog-post-list";
-import { postMetadata } from "@/lib/data";
+import { getPostMetadata } from "../actions/getPostMetadata";
 
 export const metadata = {
   title: "Blog",
 };
 
-export default function BlogPostPage() {
+export default async function BlogPostPage() {
+  const posts = await getPostMetadata();
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
@@ -20,7 +22,7 @@ export default function BlogPostPage() {
         <span className="font-medium text-xl">Past Posts</span>
 
         <div className="flex flex-col">
-          {postMetadata.map((post) => (
+          {posts.map((post) => (
             <BlogPostItem
               key={post.title}
               title={post.title}

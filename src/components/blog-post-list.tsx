@@ -1,11 +1,14 @@
-import { postMetadata } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 import { Post } from "@/types";
 import { Link } from "next-view-transitions";
 
-export function BlogPostList({ isOverview }: { isOverview: boolean }) {
-  const posts = isOverview ? postMetadata.slice(0, 3) : postMetadata;
-
+export function BlogPostList({
+  posts,
+  isOverview,
+}: {
+  posts: Post[];
+  isOverview?: boolean;
+}) {
   return (
     <div className="flex flex-col gap-4">
       <div className="pb-1">
@@ -15,7 +18,6 @@ export function BlogPostList({ isOverview }: { isOverview: boolean }) {
 
       <div className="flex flex-col gap-4">
         <div className="transition duration-200 flex flex-col">
-          {/* List Item */}
           {posts.map((post) => (
             <BlogPostItem
               key={post.title}

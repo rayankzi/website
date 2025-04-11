@@ -1,13 +1,10 @@
-import {
-  notesMetadata,
-  postMetadata,
-  projectsData,
-  siteMetadata,
-} from "@/lib/data";
+import { notesMetadata, projectsData, siteMetadata } from "@/lib/data";
+import { getPostMetadata } from "../actions/getPostMetadata";
 import RSS from "rss";
 
 export async function GET() {
   const currentDate = new Date().toISOString();
+  const postMetadata = await getPostMetadata();
 
   const feed = new RSS({
     title: siteMetadata.title,

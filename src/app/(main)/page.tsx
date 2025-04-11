@@ -3,14 +3,15 @@ import { ContactMe } from "@/components/contact-me";
 import { ExperienceList } from "@/components/experience-list";
 import { Introduction } from "@/components/intro";
 import { ProjectsList } from "@/components/projects-list";
-
-// TODO: do sitemap and robots after deployment
+import { getPostMetadata } from "./actions/getPostMetadata";
 
 export default async function Home() {
+  const posts = await getPostMetadata();
+
   return (
     <main className="flex flex-col gap-16">
       <Introduction />
-      <BlogPostList isOverview />
+      <BlogPostList posts={posts.slice(0, 3)} isOverview />
       <ProjectsList isOverview />
       <ExperienceList isOverview />
       <ContactMe />
