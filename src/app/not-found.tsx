@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { NavMenu } from "@/components/nav-menu";
 import { Sidebar } from "@/components/sidebar";
 import { Link, ViewTransitions } from "next-view-transitions";
@@ -6,7 +7,7 @@ export const metadata = {
   title: "Not Found",
 };
 
-export default function NotFound({ children }: { children: React.ReactNode }) {
+export default function NotFound() {
   return (
     <ViewTransitions>
       <NavMenu />
@@ -22,7 +23,7 @@ export default function NotFound({ children }: { children: React.ReactNode }) {
             <Link href="/">Go Back Home</Link>
           </div>
 
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </div>
     </ViewTransitions>

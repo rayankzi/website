@@ -54,6 +54,7 @@ export function formatDateToAgo(dateString: string) {
     }
   } catch (error) {
     console.error("Invalid format:", dateString);
+    console.log(error);
     return dateString;
   }
 }
