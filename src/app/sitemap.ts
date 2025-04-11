@@ -43,7 +43,7 @@ export default async function sitemap() {
   ];
 
   const contentEntries = await Promise.all(
-    contentTypes.map(async ({ type, directory, urlPath }) => {
+    contentTypes.map(async ({ directory, urlPath }) => {
       const slugs = await getFileSlugs(directory);
       return slugs.map((slug) => ({
         url: `${baseUrl}${urlPath}/${slug}`,
