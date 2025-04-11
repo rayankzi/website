@@ -1,4 +1,4 @@
-import { MenuItem, Post, ProjectItem } from "@/types";
+import { MenuItem, ProjectItem } from "@/types";
 
 export const siteMetadata = {
   title: "Rayan Kazi",
