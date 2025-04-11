@@ -1,4 +1,4 @@
-import { MenuItem, NoteItem, Post, ProjectItem } from "@/types";
+import { MenuItem, Post, ProjectItem } from "@/types";
 
 export const menuItems: MenuItem[] = [
   {
@@ -154,7 +154,7 @@ export const experienceData = [
   },
 ];
 
-export const notesMetadata: NoteItem[] = [
+export const notesMetadata = [
   {
     title: "Test Note",
     href: "/notes/test-note",
