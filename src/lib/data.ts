@@ -1,4 +1,4 @@
-import { MenuItem, ProjectItem } from "@/types";
+import { MenuItem } from "@/types";
 
 export const siteMetadata = {
   title: "Rayan Kazi",
@@ -30,27 +30,6 @@ export const menuItems: MenuItem[] = [
   {
     href: "/notes",
     name: "Notes",
-  },
-];
-
-export const projectsData: ProjectItem[] = [
-  {
-    title: "Immerse",
-    description: "A chrome extension for minimizing student distractions",
-    image: {
-      url: "/images/projects/immerse-preview.png",
-      alt: "An screenshot of Immerse app",
-    },
-    href: "/projects/immerse",
-  },
-  {
-    title: "Taskmaster",
-    description: "An all-in-one task management tool. For everyone",
-    image: {
-      url: "/images/projects/taskmaster-preview.png",
-      alt: "An screenshot of Taskmaster app",
-    },
-    href: "/projects/taskmaster",
   },
 ];
 
@@ -99,13 +78,5 @@ export const experienceData = [
       "Produced articles on JavaScript, Next JS, and other web development technology read by over 10,000 developers",
       "Integrated SEO best practices on SitePoint blog to promote course platform",
     ],
-  },
-];
-
-export const notesMetadata = [
-  {
-    title: "Test Note",
-    href: "/notes/test-note",
-    date: "04/01/2025",
   },
 ];

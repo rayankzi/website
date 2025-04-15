@@ -48,7 +48,7 @@ const components = {
     <em className="font-medium" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="font-medium" {...props} />
+    <strong className="font-medium text-high-contrast-text" {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =

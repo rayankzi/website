@@ -1,11 +1,13 @@
 import { BlogPostItem as NoteItem } from "@/components/blog-post-list";
-import { notesMetadata } from "@/lib/data";
+import { getMDXMetadata } from "../actions";
 
 export const metadata = {
   title: "Notes",
 };
 
-export default function NotesPage() {
+export default async function NotesPage() {
+  const notesMetadata = await getMDXMetadata("notes");
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">

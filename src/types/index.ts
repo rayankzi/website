@@ -3,18 +3,16 @@ export interface MenuItem {
   name: string;
 }
 
-export interface Post {
+export interface MDXItem {
   title: string;
-  href: string;
   date: string;
+  href: string;
 }
 
-export interface ProjectItem {
-  title: string;
+export interface ProjectItem extends MDXItem {
   description: string;
   image: {
     url: string;
     alt: string;
   };
-  href: string;
 }

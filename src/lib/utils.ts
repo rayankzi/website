@@ -9,7 +9,6 @@ export function formatDate(dateString: string) {
   const [month, day, year] = dateString.split("/");
   const date = new Date(`${month}/${day}/${year}`);
 
-  // Array of month names
   const monthNames = [
     "Jan",
     "Feb",
@@ -25,7 +24,6 @@ export function formatDate(dateString: string) {
     "Dec",
   ];
 
-  // Get month name, day (without leading zero), and year
   const formattedDate = `${monthNames[date.getMonth()]} ${parseInt(
     day
   )}, ${year}`;

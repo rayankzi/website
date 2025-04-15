@@ -8,9 +8,14 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { ProjectItem } from "@/types";
-import { projectsData } from "@/lib/data";
 
-export function ProjectsList({ isOverview }: { isOverview: boolean }) {
+export function ProjectsList({
+  isOverview,
+  data,
+}: {
+  isOverview: boolean;
+  data: ProjectItem[];
+}) {
   if (isOverview) {
     return (
       <div className="flex flex-col gap-4">
@@ -21,17 +26,15 @@ export function ProjectsList({ isOverview }: { isOverview: boolean }) {
 
         <div className="flex flex-col gap-4">
           <div className="transition duration-200 flex flex-col gap-8 md:flex-row">
-            {projectsData
-              .slice(0, 2)
-              .map(({ title, description, href, image }) => (
-                <ProjectCard
-                  key={title}
-                  title={title}
-                  description={description}
-                  href={href}
-                  image={image}
-                />
-              ))}
+            {data.slice(0, 2).map(({ title, description, href, image }) => (
+              <ProjectCard
+                key={title}
+                title={title}
+                description={description}
+                href={href}
+                image={image}
+              />
+            ))}
           </div>
 
           <Link
@@ -51,7 +54,12 @@ export function ProjectsList({ isOverview }: { isOverview: boolean }) {
   }
 }
 
-export function ProjectCard({ title, description, href, image }: ProjectItem) {
+export function ProjectCard({
+  title,
+  description,
+  href,
+  image,
+}: Omit<ProjectItem, "date">) {
   return (
     <Link href={href} className="w-full">
       <Card className="w-full hover:bg-accent">

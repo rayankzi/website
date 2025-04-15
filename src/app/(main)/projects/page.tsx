@@ -1,11 +1,13 @@
 import { ProjectCard } from "@/components/projects-list";
-import { projectsData } from "@/lib/data";
+import { getMDXMetadata } from "../actions";
 
 export const metadata = {
   title: "Projects",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projectsData = await getMDXMetadata("projects");
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">

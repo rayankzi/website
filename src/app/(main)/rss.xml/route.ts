@@ -1,10 +1,12 @@
-import { notesMetadata, projectsData, siteMetadata } from "@/lib/data";
-import { getPostMetadata } from "../actions/getPostMetadata";
+import { siteMetadata } from "@/lib/data";
+import { getMDXMetadata } from "../actions";
 import RSS from "rss";
 
 export async function GET() {
   const currentDate = new Date().toISOString();
-  const postMetadata = await getPostMetadata();
+  const postMetadata = await getMDXMetadata("blog");
+  const projectsMetadata = await getMDXMetadata("projects");
+  const notesMetadata = await getMDXMetadata("notes");
 
   const feed = new RSS({
     title: siteMetadata.title,
@@ -35,7 +37,7 @@ export async function GET() {
     });
   });
 
-  projectsData.forEach((project) => [
+  projectsMetadata.forEach((project) => [
     feed.item({
       title: project.title,
       guid: `${siteMetadata.url}${project.href}`,

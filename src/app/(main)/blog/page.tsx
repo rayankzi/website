@@ -1,12 +1,13 @@
 import { BlogPostItem } from "@/components/blog-post-list";
-import { getPostMetadata } from "../actions/getPostMetadata";
+import { getMDXMetadata } from "../actions";
 
 export const metadata = {
   title: "Blog",
 };
 
 export default async function BlogPostPage() {
-  const posts = await getPostMetadata();
+  const posts = await getMDXMetadata("blog");
+  console.log(posts);
 
   return (
     <div className="flex flex-col gap-8">
