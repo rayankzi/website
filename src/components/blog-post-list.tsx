@@ -1,12 +1,12 @@
 import { formatDate } from "@/lib/utils";
-import { Post } from "@/types";
+import { MDXItem } from "@/types";
 import { Link } from "next-view-transitions";
 
 export function BlogPostList({
   posts,
   isOverview,
 }: {
-  posts: Post[];
+  posts: MDXItem[];
   isOverview?: boolean;
 }) {
   return (
@@ -44,7 +44,7 @@ export function BlogPostList({
   );
 }
 
-export function BlogPostItem({ title, href, date }: Post) {
+export function BlogPostItem({ title, href, date }: MDXItem) {
   return (
     <Link
       href={href}
