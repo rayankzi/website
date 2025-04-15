@@ -1,63 +1,30 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { getMDXMetadata } from "./(main)/actions";
 
-async function getFileSlugs(dir: string) {
-  const entries = await fs.readdir(dir, {
-    recursive: true,
-    withFileTypes: true,
-  });
+async function getMDXRoutes(type: "blog" | "projects" | "notes") {
+  const baseUrl = "https://rayankazi.dev";
+  const currentDate = new Date().toISOString();
+  const data = await getMDXMetadata(type);
 
-  return entries
-    .filter((entry) => entry.isFile() && entry.name === "page.mdx")
-    .map((entry) => {
-      const relativePath = path.relative(
-        dir,
-        path.join(entry.parentPath, entry.name)
-      );
-      return path.dirname(relativePath);
-    })
-    .map((slug) => slug.replace(/\\/g, "/"));
+  return data.map((entry) => ({
+    url: `${baseUrl}${entry.href}`,
+    lastModified: currentDate,
+  }));
 }
 
 export default async function sitemap() {
   const baseUrl = "https://rayankazi.dev";
-  const basePath = path.join(process.cwd(), "src", "app", "(main)");
   const currentDate = new Date().toISOString();
 
-  const contentTypes = [
-    {
-      type: "blog",
-      directory: path.join(basePath, "blog", "(posts)"),
-      urlPath: "/blog",
-    },
-    {
-      type: "notes",
-      directory: path.join(basePath, "notes", "(notes)"),
-      urlPath: "/notes",
-    },
-    {
-      type: "projects",
-      directory: path.join(basePath, "projects", "(write-ups)"),
-      urlPath: "/projects",
-    },
-  ];
+  const postRoutes = await getMDXRoutes("blog");
+  const projectRoutes = await getMDXRoutes("projects");
+  const notesRoutes = await getMDXRoutes("notes");
 
-  const contentEntries = await Promise.all(
-    contentTypes.map(async ({ directory, urlPath }) => {
-      const slugs = await getFileSlugs(directory);
-      return slugs.map((slug) => ({
-        url: `${baseUrl}${urlPath}/${slug}`,
-        lastModified: currentDate,
-      }));
-    })
-  );
-
-  const routes = ["/", "/experience", "/blog", "/notes", "/projects"].map(
+  const otherRoutes = ["/", "/experience", "/blog", "/notes", "/projects"].map(
     (route) => ({
       url: `${baseUrl}${route}`,
       lastModified: currentDate,
     })
   );
 
-  return [...contentEntries.flat(), ...routes];
+  return [...otherRoutes, ...postRoutes, ...projectRoutes, ...notesRoutes];
 }
