@@ -8,7 +8,7 @@ export default async function ProjectsPage({
   const { slug } = await params;
 
   try {
-    const { default: Project } = await import(`@/content/blog/${slug}.mdx`);
+    const { default: Project } = await import(`@/content/projects/${slug}.mdx`);
 
     return (
       <div>
