@@ -13,7 +13,7 @@ export function Introduction() {
 
         <p className="text-low-contrast-text">
           I&apos;m a full stack developer from Phoenix and studying computer
-          science student @{" "}
+          science @{" "}
           <NextLink
             href="https://barretthonors.asu.edu/"
             target="_blank"
@@ -30,6 +30,13 @@ export function Introduction() {
             href="/blog"
           >
             blog
+          </Link>{" "}
+          and take notes about anything else{" "}
+          <Link
+            className="transition duration-200 hover:opacity-90 text-high-contrast-text"
+            href="/notes"
+          >
+            here
           </Link>
           .
         </p>

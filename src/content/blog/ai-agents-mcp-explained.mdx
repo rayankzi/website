@@ -1,0 +1,119 @@
+import { PostDateRenderer, BackLink } from "@/components/markdown-render-comps";
+
+<BackLink href="/blog">Back</BackLink>
+
+export const metadata = {
+  title: "AI Agents and MCPs - Fully Explained",
+  date: "04/27/2025",
+};
+
+# AI Agents and MCPs - Fully Explained
+
+<PostDateRenderer date="04/27/2025" />
+
+Many big tech companies have dubbed 2025 as the era of AI agents, and as such, everyone has been talking about them, and big tech companies are constantly releasing new ones.
+
+Microsoft recently just released a new AI agent builder for Copilot that can automate Microsoft Office operations.
+
+With all of the AI agents talk going around, it's important that developers understand the basics of AI agents and what they are truly capable of, so today, I'll be demystifying AI Agents and what they are!
+
+<br />
+## The Characteristics of AI Agents
+
+An **AI agent** is a system powered by an AI model that can autonomously complete tasks, make decisions, and adapt to new info. They attempt to take steps in order to achieve a goal.
+
+For example, instead of asking AI models about shopping recommendations based on your preferences, a shopping AI agent would analyze your previous purchases to automatically buy items for you. They would also solve any errors along the way, like an invalid payment.
+
+An AI agent has 3 main characteristics:
+
+1. **Autonomous** - AI agents can act completely autonomously in the scope they are allowed to.
+2. **Goal Oriented** - AI agents are striving to achieve a certain objective/goal.
+3. **Awareness** - AI agents are aware of their environment, so they can respond to both physical or online events and store memory.
+
+<br />
+## Components of an AI Agent
+
+There are four main components that make up a successful AI agent.
+
+### Large Language Model
+
+The first one is the **LLM**. The LLM is the agent's brain, and is usually a name brand model like GPT-4o, Claude 3.7 Sonnet, Gemini 2.0 Flash, etc.
+
+The LLM handles understanding in generative language, reasoning, and problem solving associated with AI capabilities.
+
+### Tooling and MCPs
+
+The second component is the **tools**. The tools could be APIs, databases, or custom written software. AI agents can use the tools you specify in order to complete their task.
+
+The interactions between agents and tools are where MCPs come in. The **MCP**, or **Model Context Protocol**, is a protocol similar to REST that standardizes how AI agents communicate with a set of tools.
+
+When AI agents were first getting popular, everyone implemented tool access in a different way, so developers had to write this type of code to integrate GitHub and that type of code to integrate Stripe.
+
+Now with the introduction of the MCP, all of the big tech companies have developed MCPs that can be seamlessly integrated into agentic AI workflows.
+
+### Memory
+
+The third component of an AI agent is **memory**. Memory allows the AI agent to track what they have done and to adjust and adapt their behaviors Most agents have short-term memory, but some have long-term.
+
+### Feedback Loops
+
+The fourth and final component is **feedback loops**. Feedback loops allow agents to continuously monitor and analyze their behavior and iteratively figure out the best method for completing a task.
+
+### Decision Making Framework
+
+All of these technologies are coordinated by the **decision making framework**, whether it be reinforcement learning or rule-based logic; the framework pulls different components to guide the agent into completing its assigned task.
+
+Now that we have seen the components of an AI agent, we'll now see how they work in action!
+
+<br />
+
+## A Generalized Agentic AI Workflow
+
+The first thing an agent will do is define its goal or accept a goal provided by the user.
+
+Then, the agent will use the LLM to break down the goal into small, more actionable subtasks. The more powerful the LLM, the better subtasks that will be generated.
+
+The agent will then choose what tools are needed and what actions need to be taken to complete each subtask. Once the agent completes a subtask, it will evaluate whether it has come closer to reaching the goal; if not, the agent will readjust its approach.
+
+If **reinforcement learning** is implemented, the agent will usually receive a reward signal if it gets closer to achieving the main goal.
+
+After completing an action or subtask, the agent will use the LLM to update the memory of what has been completed and what hasn't.
+
+Agents will go through this feedback loop of act, evaluate, and adjust until the task is complete. Another aspect of AI agents I haven't mentioned yet is **prioritization and conflict resolution**.
+
+The agent will use the help of the LLM to reason through specific options and pick the best options based on the user's requirements.
+
+So this is all very general and theory based, but let's see it in use with an example!
+
+<br />
+## Example: A Meeting Scheduler Agent
+
+Let's say I have a meeting scheduler agent and I told it to schedule a 30 minute meeting with my advisor next week.
+
+The agent will set my input as the goal and ask for any clarifications like who's joining (which in this case is myself and my advisor), specific time, and time zone.
+
+The agent's brain (aka the LLM) might then break down the goal of creating the meeting into the following subtasks:
+
+1. Query the user's calendar for open slots
+2. Query the advisor's calendar for open slots
+3. Find any overlapping availability
+4. Propose the times found from step #3
+5. Once user selects a slot, create and send invite to advisor
+
+For steps 1 and 2, the agent may need to use some MCPs to query the specific calendar API for myself and the advisor (this may be Google Calendar, Calendly, etc.).
+
+An example of just part of the feedback loop the agent would expereince is the following:
+
+1. **Act**: Proposes 3 time slots to user
+2. **Evaluate**: Looks at user choice and makes sure no conflicts arise
+3. **Adjust**: If agent detects an issue with what the user chose, informs user and then proposes new alternatives to the user
+
+An example of the agent exmeplifying **prioritization** would be prioritizing certain weekdays based on the user's preferences (from the AI's context).
+
+<br />
+
+## Conclusion
+
+AI agents are genuinely going to change software engineers' workflows in 2025 and beyond, so it's vital to understand what they are and how they work.
+
+I hope I've given you a good understanding of AI agents, MCPs, and agentic AI workflows!
