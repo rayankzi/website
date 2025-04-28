@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { siteMetadata } from "@/lib/data";
 import "./globals.css";
+import Script from "next/script";
+import { env } from "@/env";
 
 export const metadata: Metadata = {
   title: {
@@ -10,8 +12,6 @@ export const metadata: Metadata = {
   description: siteMetadata.description,
 };
 
-// TODO: change metadata
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,7 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased dark">{children}</body>
+      <body className="antialiased dark">
+        {children}
+
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+        />
+      </body>
     </html>
   );
 }
