@@ -8,12 +8,12 @@ export function ContactMe() {
         <p className="leading-loose">
           Reach out to me at{" "}
           <Link
-            href="mailto:rayankazi7515@gmail.com"
+            href="mailto:rkazi1@asu.edu"
             className="transition duration-200 hover:opacity-90 text-high-contrast-text"
           >
-            rayankazi7515@gmail.com
+            rkazi1@asu.edu
           </Link>{" "}
-          or shoot me a connection request on{" "}
+          or shoot me a DM on{" "}
           <Link
             href="https://www.linkedin.com/in/rayan-kazi-77a80b2ba/"
             target="_blank"
