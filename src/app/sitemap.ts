@@ -1,6 +1,6 @@
 import { getMDXMetadata } from "./(main)/actions";
 
-async function getMDXRoutes(type: "blog" | "projects" | "notes") {
+async function getMDXRoutes(type: "blog" | "projects") {
   const baseUrl = "https://rayankazi.dev";
   const currentDate = new Date().toISOString();
   const data = await getMDXMetadata(type);
@@ -17,14 +17,13 @@ export default async function sitemap() {
 
   const postRoutes = await getMDXRoutes("blog");
   const projectRoutes = await getMDXRoutes("projects");
-  const notesRoutes = await getMDXRoutes("notes");
 
-  const otherRoutes = ["/", "/experience", "/blog", "/notes", "/projects"].map(
+  const otherRoutes = ["/", "/experience", "/blog", "/projects"].map(
     (route) => ({
       url: `${baseUrl}${route}`,
       lastModified: currentDate,
     })
   );
 
-  return [...otherRoutes, ...postRoutes, ...projectRoutes, ...notesRoutes];
+  return [...otherRoutes, ...postRoutes, ...projectRoutes];
 }

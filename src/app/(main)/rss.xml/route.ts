@@ -6,7 +6,6 @@ export async function GET() {
   const currentDate = new Date().toISOString();
   const postMetadata = await getMDXMetadata("blog");
   const projectsMetadata = await getMDXMetadata("projects");
-  const notesMetadata = await getMDXMetadata("notes");
 
   const feed = new RSS({
     title: siteMetadata.title,
@@ -24,16 +23,6 @@ export async function GET() {
       url: `${siteMetadata.url}${post.href}`,
       date: post.date,
       description: post.title,
-    });
-  });
-
-  notesMetadata.forEach((note) => {
-    feed.item({
-      title: note.title,
-      guid: `${siteMetadata.url}${note.href}`,
-      url: `${siteMetadata.url}${note.href}`,
-      date: note.date,
-      description: note.title,
     });
   });
 

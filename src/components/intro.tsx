@@ -24,21 +24,13 @@ export function Introduction() {
         </p>
 
         <p className="text-low-contrast-text">
-          I often write about my experiences on my{" "}
+          I often write about my experiences and thoughts on my{" "}
           <Link
             className="transition duration-200 hover:opacity-90 text-high-contrast-text"
             href="/blog"
           >
             blog
           </Link>{" "}
-          and take notes about anything else{" "}
-          <Link
-            className="transition duration-200 hover:opacity-90 text-high-contrast-text"
-            href="/notes"
-          >
-            here
-          </Link>
-          .
         </p>
       </div>
     </div>

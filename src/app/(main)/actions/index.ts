@@ -4,7 +4,7 @@ import { MDXItem, ProjectItem } from "@/types";
 import fs from "fs/promises";
 import path from "path";
 
-export async function getMDXMetadata<T extends "blog" | "notes" | "projects">(
+export async function getMDXMetadata<T extends "blog" | "projects">(
   type: T
 ): Promise<T extends "projects" ? ProjectItem[] : MDXItem[]> {
   const dir = path.join(process.cwd(), "src", "content", type);
@@ -25,7 +25,7 @@ export async function getMDXMetadata<T extends "blog" | "notes" | "projects">(
           image: metadata.image,
         } as ProjectItem;
       } else {
-        // MDXItem for blog and notes
+        // MDXItem for blog
         return {
           title: metadata.title,
           date: metadata.date,

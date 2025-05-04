@@ -51,11 +51,6 @@ export function NavMenu() {
               Experience
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="/notes" className="cursor-pointer">
-              Notes
-            </Link>
-          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>

@@ -27,10 +27,6 @@ export const menuItems: MenuItem[] = [
     href: "/experience",
     name: "Experience",
   },
-  {
-    href: "/notes",
-    name: "Notes",
-  },
 ];
 
 export const experienceData = [
