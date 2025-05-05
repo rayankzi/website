@@ -1,5 +1,7 @@
+import { BlogPostList } from "@/components/blog-post-list";
 import { siteMetadata } from "@/lib/data";
 import { redirect } from "next/navigation";
+import { getMDXMetadata } from "../../actions";
 
 export async function generateMetadata({
   params,
@@ -25,6 +27,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const posts = await getMDXMetadata("blog");
 
   try {
     const { default: Post } = await import(`@/content/blog/${slug}.mdx`);
@@ -32,6 +35,9 @@ export default async function BlogPostPage({
     return (
       <div>
         <Post />
+        <div className="pt-10">
+          <BlogPostList fetchedPosts={posts} isBlogFooter />
+        </div>
       </div>
     );
   } catch (error) {
