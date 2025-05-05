@@ -24,6 +24,12 @@ export function BlogPostList({
     post.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const renderedPosts = isOverview
+    ? posts.slice(0, 3)
+    : isBlogFooter
+    ? posts.slice(1, 4)
+    : posts;
+
   return (
     <div
       className={`flex flex-col ${
@@ -40,7 +46,7 @@ export function BlogPostList({
           </div>
           <div className="flex flex-col gap-4">
             <div className="transition duration-200 flex flex-col">
-              {posts.slice(1, 4).map((post) => (
+              {renderedPosts.map((post) => (
                 <BlogPostItem
                   key={post.title}
                   title={post.title}
