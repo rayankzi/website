@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <main className="flex flex-col gap-16">
       <Introduction />
-      <BlogPostList posts={posts.slice(0, 3)} isOverview />
+      <BlogPostList fetchedPosts={posts.slice(0, 3)} isOverview />
       <ProjectsList data={projects.slice(0, 2)} isOverview />
       <ExperienceList isOverview />
       <ContactMe />
