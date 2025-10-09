@@ -7,7 +7,7 @@ export function ExperienceList({ isOverview }: { isOverview?: boolean }) {
       {isOverview && (
         <div className="pb-1">
           <span className="text-lg font-medium">Work Experience</span>
-          <p>What I&apos;m doing right now</p>
+          <p>What I&apos;ve done & what I&apos;m doing right now</p>
         </div>
       )}
 
