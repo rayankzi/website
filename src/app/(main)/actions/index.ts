@@ -4,6 +4,13 @@ import { MDXItem, ProjectItem } from "@/types";
 import fs from "fs/promises";
 import path from "path";
 
+function calculateReadTime(content: string): string {
+  const wordsPerMinute = 200;
+  const words = content.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min`;
+}
+
 export async function getMDXMetadata<T extends "blog" | "projects">(
   type: T
 ): Promise<T extends "projects" ? ProjectItem[] : MDXItem[]> {
@@ -25,11 +32,16 @@ export async function getMDXMetadata<T extends "blog" | "projects">(
           image: metadata.image,
         } as ProjectItem;
       } else {
-        // MDXItem for blog
+        // MDXItem for blog - calculate read time
+        const filePath = path.join(dir, file);
+        const fileContent = await fs.readFile(filePath, "utf-8");
+        const readTime = calculateReadTime(fileContent);
+
         return {
           title: metadata.title,
           date: metadata.date,
           href: `/${type}/${file}`.slice(0, -4),
+          readTime,
         } as MDXItem;
       }
     });

@@ -7,6 +7,7 @@ export interface MDXItem {
   title: string;
   date: string;
   href: string;
+  readTime?: string;
 }
 
 export interface ProjectItem extends MDXItem {
