@@ -6,6 +6,7 @@ import { MDXItem } from "@/types";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 interface BlogClientProps {
   posts: MDXItem[];
@@ -15,6 +16,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeSection, setActiveSection] = useState("");
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -78,7 +80,19 @@ export default function BlogClient({ posts }: BlogClientProps) {
           <div className="space-y-8 w-full">
             <div className="space-y-4">
               <div className="text-sm text-muted-foreground font-mono tracking-wider">
-                BLOG / THOUGHTS
+                <span
+                  className="cursor-pointer"
+                  onClick={() => router.push("/new")}
+                >
+                  PORTFOLIO
+                </span>{" "}
+                /{" "}
+                <span
+                  className="cursor-pointer"
+                  onClick={() => router.push("/new/blog")}
+                >
+                  BLOG
+                </span>
               </div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight">
                 Recent
@@ -109,7 +123,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                 {featuredPosts.map((post, index) => (
                   <Link
                     key={index}
-                    href={post.href}
+                    href={post.href.replace("/blog/", "/new/blog/")}
                     className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
                   >
                     <div className="space-y-4">
@@ -194,7 +208,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                 {filteredPosts.map((post, index) => (
                   <Link
                     key={index}
-                    href={post.href}
+                    href={post.href.replace("/blog/", "/new/blog/")}
                     className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
                   >
                     <div className="lg:col-span-3">

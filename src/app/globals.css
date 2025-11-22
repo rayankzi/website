@@ -187,13 +187,13 @@ p {
   @apply text-low-contrast-text;
 }
 
+/* Code block styles with sugar-high */
 pre {
   background-color: #24292e;
   border-radius: 0.5rem;
   overflow-x: auto;
   padding: 1rem;
   margin: 1.5rem 0;
-  line-height: 0.3;
 }
 
 pre::-webkit-scrollbar {
@@ -207,9 +207,15 @@ pre {
 
 code {
   font-size: 14px;
+  font-family: var(--font-mono);
+}
+
+/* Inline code styling */
+code:not(pre code) {
   padding: 0.2em 0.4em;
   border-radius: 0.3em;
-  background-color: var(--color-gray-400);
+  background-color: var(--muted);
+  font-weight: 500;
 }
 
 pre code {
@@ -218,20 +224,17 @@ pre code {
   margin: 0;
   border: none;
   font-size: 14px;
-  line-height: 1;
+  line-height: 1.7;
 }
 
-pre code > span .sh__token--identifier {
-  color: white !important;
+/* Sugar-high syntax highlighting token styles */
+pre code span {
+  font-weight: 500;
 }
 
 code:not(pre code) span {
   font-weight: 500;
-  color: black !important;
-}
-
-pre code span {
-  font-weight: 500;
+  color: inherit;
 }
 
 input[type="text"],
