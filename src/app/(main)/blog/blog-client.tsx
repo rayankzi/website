@@ -82,14 +82,14 @@ export default function BlogClient({ posts }: BlogClientProps) {
               <div className="text-sm text-muted-foreground font-mono tracking-wider">
                 <span
                   className="cursor-pointer"
-                  onClick={() => router.push("/new")}
+                  onClick={() => router.push("/")}
                 >
                   PORTFOLIO
                 </span>{" "}
                 /{" "}
                 <span
                   className="cursor-pointer"
-                  onClick={() => router.push("/new/blog")}
+                  onClick={() => router.push("/blog")}
                 >
                   BLOG
                 </span>
@@ -123,7 +123,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                 {featuredPosts.map((post, index) => (
                   <Link
                     key={index}
-                    href={post.href.replace("/blog/", "/new/blog/")}
+                    href={post.href}
                     className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
                   >
                     <div className="space-y-4">
@@ -208,7 +208,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                 {filteredPosts.map((post, index) => (
                   <Link
                     key={index}
-                    href={post.href.replace("/blog/", "/new/blog/")}
+                    href={post.href}
                     className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
                   >
                     <div className="lg:col-span-3">
@@ -259,7 +259,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
             </div>
 
             <Link
-              href="/new"
+              href="/"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
             >
               ← Back to home

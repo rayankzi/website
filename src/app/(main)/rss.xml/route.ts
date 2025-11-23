@@ -1,44 +1,43 @@
-import { siteMetadata } from "@/lib/data";
-import { getMDXMetadata } from "../actions";
-import RSS from "rss";
+import { getMDXMetadata } from "@/app/(main)/actions";
 
 export async function GET() {
-  const currentDate = new Date().toISOString();
-  const postMetadata = await getMDXMetadata("blog");
-  const projectsMetadata = await getMDXMetadata("projects");
+  const posts = await getMDXMetadata("blog");
+  const siteUrl = "https://rayankazi.dev";
 
-  const feed = new RSS({
-    title: siteMetadata.title,
-    description: siteMetadata.description,
-    site_url: siteMetadata.url,
-    feed_url: `${siteMetadata.url}/rss.xml`,
-    copyright: `${new Date().getFullYear()} ${siteMetadata.title}`,
-    pubDate: currentDate,
-  });
+  const rssItems = posts
+    .map((post) => {
+      // Parse the date from MM/DD/YYYY format
+      const [month, day, year] = post.date.split("/").map(Number);
+      const fullYear = year < 100 ? 2000 + year : year;
+      const pubDate = new Date(fullYear, month - 1, day).toUTCString();
 
-  postMetadata.forEach((post) => {
-    feed.item({
-      title: post.title,
-      guid: `${siteMetadata.url}${post.href}`,
-      url: `${siteMetadata.url}${post.href}`,
-      date: post.date,
-      description: post.title,
-    });
-  });
+      return `
+    <item>
+      <title><![CDATA[${post.title}]]></title>
+      <link>${siteUrl}${post.href}</link>
+      <guid isPermaLink="true">${siteUrl}${post.href}</guid>
+      <pubDate>${pubDate}</pubDate>
+    </item>`;
+    })
+    .join("");
 
-  projectsMetadata.forEach((project) => [
-    feed.item({
-      title: project.title,
-      guid: `${siteMetadata.url}${project.href}`,
-      url: `${siteMetadata.url}${project.href}`,
-      date: currentDate,
-      description: project.description,
-    }),
-  ]);
+  const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rayan Kazi's Blog</title>
+    <link>${siteUrl}</link>
+    <description>Programming tutorials, developer insights, and thoughts on building for the web.</description>
+    <language>en-us</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>
+    ${rssItems}
+  </channel>
+</rss>`;
 
-  return new Response(feed.xml(), {
+  return new Response(rss, {
     headers: {
-      "Content-Type": "text/xml",
+      "Content-Type": "application/xml",
+      "Cache-Control": "public, max-age=3600",
     },
   });
 }

@@ -13,17 +13,17 @@ import {
   education,
   socialLinks,
   footer,
-  projects,
 } from "@/lib/new-data";
 import Image from "next/image";
-import { MDXItem } from "@/types";
+import { MDXItem, ProjectItem } from "@/types";
 import { useRouter } from "next/navigation";
 
 interface HomeClientProps {
   blogPosts: MDXItem[];
+  projects: ProjectItem[];
 }
 
-export default function HomeClient({ blogPosts }: HomeClientProps) {
+export default function HomeClient({ blogPosts, projects }: HomeClientProps) {
   const [activeSection, setActiveSection] = useState("");
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
   const router = useRouter();
@@ -94,7 +94,7 @@ export default function HomeClient({ blogPosts }: HomeClientProps) {
               <div className="space-y-3 sm:space-y-2">
                 <div
                   className="text-sm text-muted-foreground font-mono tracking-wide cursor-pointer"
-                  onClick={() => router.push("/new")}
+                  onClick={() => router.push("/")}
                 >
                   PORTFOLIO / {personalInfo.portfolioYear}
                 </div>
@@ -242,8 +242,8 @@ export default function HomeClient({ blogPosts }: HomeClientProps) {
                 >
                   <div className="relative aspect-video overflow-hidden bg-muted">
                     <Image
-                      src={project.thumbnail || "/placeholder.svg"}
-                      alt={project.title}
+                      src={project.image.url || "/placeholder.svg"}
+                      alt={project.image.alt}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
@@ -357,7 +357,7 @@ export default function HomeClient({ blogPosts }: HomeClientProps) {
               {recentPosts.map((post, index) => (
                 <Link
                   key={index}
-                  href={post.href.replace("/blog/", "/new/blog/")}
+                  href={post.href}
                   className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
                 >
                   <div className="space-y-4">
@@ -392,7 +392,7 @@ export default function HomeClient({ blogPosts }: HomeClientProps) {
             </div>
 
             <Link
-              href="/new/blog"
+              href="/blog"
               className="group inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300 mt-8"
             >
               <span>View all posts</span>

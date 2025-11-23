@@ -1,12 +1,12 @@
-import { BlogPostList } from "@/components/blog-post-list";
-import { getMDXMetadata } from "../actions";
+import { getMDXMetadata } from "@/app/(main)/actions";
+import BlogClient from "./blog-client";
 
 export const metadata = {
   title: "Blog",
 };
 
-export default async function BlogPostPage() {
+export default async function BlogPage() {
   const posts = await getMDXMetadata("blog");
 
-  return <BlogPostList fetchedPosts={posts} />;
+  return <BlogClient posts={posts} />;
 }

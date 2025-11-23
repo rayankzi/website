@@ -1,5 +1,5 @@
 import { ProjectCard } from "@/components/projects-list";
-import { getMDXMetadata } from "../actions";
+import { getMDXMetadata } from "../../(main)/actions";
 
 export const metadata = {
   title: "Projects",

@@ -22,10 +22,11 @@ export const currentWork = {
 };
 
 export const skills = [
-  "Object Oriented Programming",
-  "Java",
-  "Data Structures",
-  "Algorithms",
+  "Next JS",
+  "Tailwind CSS",
+  "Python",
+  "TypeScript",
+  "Databases",
 ];
 
 export const workExperience = [
