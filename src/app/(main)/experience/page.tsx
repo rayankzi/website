@@ -5,12 +5,7 @@ import { useEffect, useRef } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { MessageCircle, ArrowLeft, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  personalInfo,
-  workExperience,
-  footer,
-  dateRanges,
-} from "@/lib/new-data";
+import { personalInfo, workExperience, footer } from "@/lib/new-data";
 
 export default function ExperiencePage() {
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
