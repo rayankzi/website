@@ -51,6 +51,9 @@ export default function HomeClient({ blogPosts, projects }: HomeClientProps) {
   // Show only the first 4 blog posts
   const recentPosts = blogPosts.slice(0, 4);
 
+  // Show only the first 3 work experiences
+  const recentWorkExperience = workExperience.slice(0, 3);
+
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
@@ -194,7 +197,7 @@ export default function HomeClient({ blogPosts, projects }: HomeClientProps) {
             </div>
 
             <div className="space-y-8 sm:space-y-12">
-              {workExperience.map((job, index) => (
+              {recentWorkExperience.map((job, index) => (
                 <div
                   key={index}
                   className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
@@ -219,6 +222,26 @@ export default function HomeClient({ blogPosts, projects }: HomeClientProps) {
                 </div>
               ))}
             </div>
+
+            <Link
+              href="/experience"
+              className="group inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300 mt-8"
+            >
+              <span>View all experience</span>
+              <svg
+                className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </Link>
           </div>
         </section>
 
