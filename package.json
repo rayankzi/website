@@ -44,6 +44,7 @@
     "@types/rss": "^0.0.32",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "shadcn": "^4.7.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

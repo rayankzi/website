@@ -38,7 +38,7 @@ export default function HomeClient({ blogPosts, projects }: HomeClientProps) {
           }
         });
       },
-      { threshold: 0.3, rootMargin: "0px 0px -20% 0px" }
+      { threshold: 0.3, rootMargin: "0px 0px -20% 0px" },
     );
 
     sectionsRef.current.forEach((section) => {
