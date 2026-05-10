@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import { Avatar } from "@/components/ui/avatar";
 import { menuItems } from "@/lib/data";
-import { Link as TransitionLink } from "next-view-transitions";
 import Link from "next/link";
 
 export function Sidebar() {
@@ -69,7 +68,7 @@ export function SidebarLink({
     );
   } else {
     return (
-      <TransitionLink
+      <Link
         className={`flex items-center gap-2 py-1 hover:text-high-contrast-text transition-colors duration-200 ${
           active ? "text-high-contrast-text" : "text-low-contrast-text"
         }`}
@@ -77,7 +76,7 @@ export function SidebarLink({
         prefetch={prefetch}
       >
         {children}
-      </TransitionLink>
+      </Link>
     );
   }
 }

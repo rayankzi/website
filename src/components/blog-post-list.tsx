@@ -2,7 +2,7 @@
 
 import { formatDate } from "@/lib/utils";
 import { MDXItem } from "@/types";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Search, X } from "lucide-react";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { Oxanium } from "next/font/google";
 import { usePathname } from "next/navigation";
 

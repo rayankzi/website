@@ -1,4 +1,4 @@
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { ExperienceAccordion } from "@/components/experience-accordion";
 
 export function ExperienceList({ isOverview }: { isOverview?: boolean }) {

@@ -1,7 +1,7 @@
 import { Footer } from "@/components/footer";
 import { NavMenu } from "@/components/nav-menu";
 import { Sidebar } from "@/components/sidebar";
-import { Link, ViewTransitions } from "next-view-transitions";
+import Link from "next/link";
 
 export const metadata = {
   title: "Not Found",
@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <ViewTransitions>
+    <>
       <NavMenu />
       <div className="mx-auto flex min-h-screen w-full max-w-4xl gap-12 px-8">
         <Sidebar />
@@ -26,6 +26,6 @@ export default function NotFound() {
           <Footer />
         </div>
       </div>
-    </ViewTransitions>
+    </>
   );
 }

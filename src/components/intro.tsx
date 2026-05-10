@@ -1,5 +1,5 @@
 import { Avatar } from "@/components/ui/avatar";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import NextLink from "next/link";
 
 export function Introduction() {

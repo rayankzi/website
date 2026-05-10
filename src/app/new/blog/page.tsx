@@ -1,7 +1,7 @@
 import { getMDXMetadata } from "@/app/(main)/actions";
 import { cn, formatDate } from "@/lib/utils";
 import { Oxanium } from "next/font/google";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 const oxanium = Oxanium({
   subsets: ["latin"],

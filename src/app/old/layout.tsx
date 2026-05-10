@@ -1,7 +1,6 @@
 import { NavMenu } from "@/components/nav-menu";
 import { Sidebar } from "@/components/sidebar";
 import { Footer } from "@/components/footer";
-import { ViewTransitions } from "next-view-transitions";
 
 export default function MainLayout({
   children,
@@ -9,7 +8,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ViewTransitions>
+    <>
       <NavMenu />
       <div className="mx-auto flex min-h-screen w-full max-w-4xl gap-12 px-8">
         <Sidebar />
@@ -20,6 +19,6 @@ export default function MainLayout({
           <Footer />
         </div>
       </div>
-    </ViewTransitions>
+    </>
   );
 }

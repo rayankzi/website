@@ -2,7 +2,7 @@ import { getMDXMetadata } from "@/app/(main)/actions";
 import { formatDate } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import fs from "fs/promises";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import path from "path";
 
