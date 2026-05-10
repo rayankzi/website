@@ -48,7 +48,7 @@ const components = {
     <em className="font-medium" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="font-medium text-high-contrast-text" {...props} />
+    <strong className="font-semibold text-high-contrast-text" {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
@@ -79,10 +79,29 @@ const components = {
       </a>
     );
   },
-  code: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
+  code: ({
+    children,
+    className,
+    ...props
+  }: ComponentPropsWithoutRef<"code">) => {
     const codeString = typeof children === "string" ? children : "";
+
+    if (!className?.includes("language-")) {
+      return (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    }
+
     const codeHTML = highlight(codeString);
-    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+    return (
+      <code
+        className={className}
+        dangerouslySetInnerHTML={{ __html: codeHTML }}
+        {...props}
+      />
+    );
   },
   pre: ({ children, ...props }: ComponentPropsWithoutRef<"pre">) => {
     return <pre {...props}>{children}</pre>;
@@ -113,7 +132,6 @@ const components = {
       {...props}
     />
   ),
-  // ... rest of the code remains the same
 };
 
 export function useMDXComponents(): MDXProvidedComponents {

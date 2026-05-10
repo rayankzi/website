@@ -82,16 +82,17 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --low-contrast-text: oklch(0.667 0 0.899);
-  --high-contrast-text: oklch(0.958 0.01 0.172);
+  --high-contrast-text: oklch(0.145 0 0);
 
-  --sh-class: #7aa2f7;
-  --sh-sign: #89ddff;
-  --sh-string: #9ece6a;
-  --sh-keyword: #bb9af7;
-  --sh-comment: #565f89;
-  --sh-jsxliterals: #7aa2f7;
-  --sh-property: #73daca;
-  --sh-entity: #e0af68;
+  --sh-class: #2d5e9d;
+  --sh-identifier: #354150;
+  --sh-sign: #8996a3;
+  --sh-string: #008a7c;
+  --sh-keyword: #c2410c;
+  --sh-comment: #8a7f7f;
+  --sh-jsxliterals: #6266d1;
+  --sh-property: #0550ae;
+  --sh-entity: #9a6700;
 }
 
 .dark {
@@ -126,6 +127,18 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --low-contrast-text: oklch(0.708 0 0);
+  --high-contrast-text: oklch(0.958 0.01 0.172);
+
+  --sh-class: #7aa2f7;
+  --sh-identifier: #c0caf5;
+  --sh-sign: #89ddff;
+  --sh-string: #9ece6a;
+  --sh-keyword: #bb9af7;
+  --sh-comment: #565f89;
+  --sh-jsxliterals: #7aa2f7;
+  --sh-property: #73daca;
+  --sh-entity: #e0af68;
 }
 
 @layer base {
@@ -189,11 +202,18 @@ p {
 
 /* Code block styles with sugar-high */
 pre {
-  background-color: #24292e;
+  background-color: oklch(0.985 0 0);
+  border: 1px solid var(--border);
   border-radius: 0.5rem;
+  color: var(--foreground);
   overflow-x: auto;
   padding: 1rem;
   margin: 1.5rem 0;
+}
+
+.dark pre {
+  background-color: #24292e;
+  border-color: transparent;
 }
 
 pre::-webkit-scrollbar {
@@ -215,6 +235,9 @@ code:not(pre code) {
   padding: 0.2em 0.4em;
   border-radius: 0.3em;
   background-color: var(--muted);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  font-family: var(--font-mono);
   font-weight: 500;
 }
 
@@ -223,6 +246,7 @@ pre code {
   padding: 0;
   margin: 0;
   border: none;
+  color: inherit;
   font-size: 14px;
   line-height: 1.7;
 }
