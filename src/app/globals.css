@@ -227,7 +227,7 @@ pre {
 
 code {
   font-size: 14px;
-  font-family: var(--font-mono);
+  font-family: var(--font-geist-mono);
 }
 
 /* Inline code styling */
@@ -237,7 +237,7 @@ code:not(pre code) {
   background-color: var(--muted);
   border: 1px solid var(--border);
   color: var(--foreground);
-  font-family: var(--font-mono);
+  font-family: var(--font-geist-mono);
   font-weight: 500;
 }
 
