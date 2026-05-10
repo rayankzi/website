@@ -1,4 +1,4 @@
-import { getMDXMetadata } from "@/app/(main)/actions";
+import { getMDXMetadata } from "@/lib/mdx";
 
 export async function GET() {
   const posts = await getMDXMetadata("blog");

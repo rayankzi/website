@@ -1,12 +1,12 @@
-import { getMDXMetadata } from "./(main)/actions";
+import { getMDXMetadata } from "@/lib/mdx";
 
-async function getMDXRoutes(type: "blog" | "projects") {
+async function getBlogRoutes() {
   const baseUrl = "https://rayankazi.dev";
   const currentDate = new Date().toISOString();
-  const data = await getMDXMetadata(type);
+  const posts = await getMDXMetadata("blog");
 
-  return data.map((entry) => ({
-    url: `${baseUrl}${entry.href}`,
+  return posts.map((post) => ({
+    url: `${baseUrl}${post.href}`,
     lastModified: currentDate,
   }));
 }
@@ -15,15 +15,12 @@ export default async function sitemap() {
   const baseUrl = "https://rayankazi.dev";
   const currentDate = new Date().toISOString();
 
-  const postRoutes = await getMDXRoutes("blog");
-  const projectRoutes = await getMDXRoutes("projects");
+  const postRoutes = await getBlogRoutes();
 
-  const otherRoutes = ["/", "/experience", "/blog", "/projects"].map(
-    (route) => ({
-      url: `${baseUrl}${route}`,
-      lastModified: currentDate,
-    })
-  );
+  const otherRoutes = ["/", "/blog", "/projects"].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: currentDate,
+  }));
 
-  return [...otherRoutes, ...postRoutes, ...projectRoutes];
+  return [...otherRoutes, ...postRoutes];
 }

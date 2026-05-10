@@ -1,4 +1,4 @@
-import { UnderConstruction } from "@/components/new/under-construction";
+import { UnderConstruction } from "@/components/under-construction";
 import { cn } from "@/lib/utils";
 import { Oxanium } from "next/font/google";
 
@@ -11,7 +11,7 @@ const oxanium = Oxanium({
   weight: "700",
 });
 
-export default function NewProjectsPage() {
+export default function ProjectsPage() {
   return (
     <section className="flex flex-col gap-6 py-10">
       <div className="flex flex-col gap-2">

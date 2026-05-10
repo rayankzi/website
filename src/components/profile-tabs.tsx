@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-import { UnderConstruction } from "@/components/new/under-construction";
+import { UnderConstruction } from "@/components/under-construction";
 import {
   Accordion,
   AccordionItem,
@@ -20,7 +18,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/animate-ui/components/radix/tabs";
-import { education, projects, workExperience } from "@/lib/new-data";
+import { education, workExperience } from "@/lib/new-data";
 
 const educationBullets = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -107,34 +105,5 @@ export function ProfileTabs() {
         </TabsContent>
       </Tabs>
     </section>
-  );
-}
-
-export function ProjectCard({
-  project,
-}: {
-  project: (typeof projects)[number];
-}) {
-  return (
-    <Card className="overflow-hidden rounded-lg">
-      <div className="relative aspect-[4/3] bg-muted">
-        <Image
-          src={project.thumbnail}
-          alt=""
-          fill
-          sizes="(min-width: 768px) 352px, 100vw"
-          className="object-cover"
-        />
-      </div>
-      <CardHeader>
-        <CardTitle>{project.title}</CardTitle>
-        <CardDescription>{project.date}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm leading-6 text-muted-foreground">
-          {project.description}
-        </p>
-      </CardContent>
-    </Card>
   );
 }

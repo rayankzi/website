@@ -1,15 +1,16 @@
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { getMDXMetadata } from "@/app/(main)/actions";
+import { getMDXMetadata } from "@/lib/mdx";
+import { formatDate } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import fs from "fs/promises";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import path from "path";
 
 function calculateReadTime(content: string): string {
   const wordsPerMinute = 200;
   const words = content.trim().split(/\s+/).length;
   const minutes = Math.ceil(words / wordsPerMinute);
-  return `${minutes} min read`;
+  return `${minutes} mins`;
 }
 
 export async function generateStaticParams() {
@@ -55,7 +56,6 @@ export default async function BlogPostPage({
       `@/content/blog/${slug}.mdx`
     );
 
-    // Calculate read time
     const filePath = path.join(
       process.cwd(),
       "src",
@@ -66,106 +66,59 @@ export default async function BlogPostPage({
     const fileContent = await fs.readFile(filePath, "utf-8");
     const readTime = calculateReadTime(fileContent);
 
-    // Get related posts (exclude current post, take first 3)
     const relatedPosts = posts
-      .filter((post) => !post.href.endsWith(slug))
+      .filter((post) => !post.href.endsWith(`/${slug}`))
       .slice(0, 3);
 
     return (
-      <div className="min-h-screen bg-background text-foreground">
-        <main className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-16">
-          {/* Back link */}
-          <div className="pt-8 sm:pt-12">
-            <Link
-              href="/blog"
-              className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-            >
-              <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform duration-300" />
-              <span>Back to all posts</span>
-            </Link>
+      <article className="flex flex-col gap-10 py-10">
+        <Link
+          href="/blog"
+          className="group inline-flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+        >
+          <ArrowLeft className="size-4 transition-transform duration-300 group-hover:-translate-x-1" />
+          <span>Back to all posts</span>
+        </Link>
+
+        <header className="flex flex-col gap-5 border-b border-border pb-8">
+          <div className="text-sm text-muted-foreground">
+            {formatDate(metadata.date)} · {readTime}
           </div>
+          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+            {metadata.title}
+          </h1>
+        </header>
 
-          {/* Article header */}
-          <header className="pt-12 sm:pt-16 pb-8 sm:pb-12 border-b border-border">
-            <div className="space-y-6">
-              <div className="flex items-center gap-4 text-sm text-muted-foreground font-mono">
-                <span>{metadata.date}</span>
-                <span className="w-1 h-1 rounded-full bg-muted-foreground"></span>
-                <span>{readTime}</span>
-              </div>
+        <div className="prose prose-neutral max-w-none dark:prose-invert">
+          <Post />
+        </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight">
-                {metadata.title}
-              </h1>
+        {relatedPosts.length > 0 && (
+          <section className="flex flex-col gap-5 border-t border-border pt-8">
+            <h2 className="text-2xl font-semibold tracking-tight">
+              You might also like
+            </h2>
+            <div className="flex flex-col">
+              {relatedPosts.map((post) => (
+                <Link
+                  key={post.href}
+                  href={post.href}
+                  className="group -mx-3 flex rounded-md border border-transparent px-3 py-4 transition-all duration-300 hover:border-border hover:bg-accent/40 hover:px-5"
+                >
+                  <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <h3 className="font-medium text-foreground transition-colors duration-300 group-hover:text-muted-foreground">
+                      {post.title}
+                    </h3>
+                    <span className="text-sm text-muted-foreground">
+                      {formatDate(post.date)}
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
-          </header>
-
-          {/* Article content */}
-          <article className="py-12 sm:py-16 prose prose-neutral dark:prose-invert max-w-none">
-            <Post />
-          </article>
-
-          {/* Related posts */}
-          {relatedPosts.length > 0 && (
-            <section className="py-12 sm:py-16 border-t border-border">
-              <div className="space-y-8">
-                <h2 className="text-2xl sm:text-3xl font-light">
-                  You might also like
-                </h2>
-
-                <div className="grid gap-6 sm:gap-8">
-                  {relatedPosts.map((post, index) => (
-                    <Link
-                      key={index}
-                      href={post.href}
-                      className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
-                    >
-                      <div className="lg:col-span-3">
-                        <div className="text-sm text-muted-foreground font-mono">
-                          {post.date}
-                        </div>
-                      </div>
-
-                      <div className="lg:col-span-7 space-y-2">
-                        <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-500">
-                          {post.title}
-                        </h3>
-                      </div>
-
-                      <div className="lg:col-span-2 flex items-start lg:justify-end mt-2 lg:mt-0">
-                        {post.readTime && (
-                          <span className="text-sm text-muted-foreground">
-                            {post.readTime}
-                          </span>
-                        )}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </section>
-          )}
-
-          {/* Footer */}
-          <footer className="py-12 sm:py-16 border-t border-border">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
-              <div className="space-y-2">
-                <div className="text-sm text-muted-foreground">
-                  &copy; {new Date().getFullYear()} Rayan Kazi. All rights
-                  reserved.
-                </div>
-              </div>
-
-              <Link
-                href="/"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
-                &larr; Back to home
-              </Link>
-            </div>
-          </footer>
-        </main>
-      </div>
+          </section>
+        )}
+      </article>
     );
   } catch (error) {
     console.error("Error loading blog post:", error);

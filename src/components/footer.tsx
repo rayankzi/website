@@ -1,12 +1,11 @@
-export function Footer() {
-  const currentYear = new Date().getFullYear();
+const lastUpdated = "May 10, 2026";
 
+export function Footer() {
   return (
-    <footer className="flex justify-center mx-auto">
-      <span className="text-low-contrast-text text-sm">
-        &copy; {currentYear}{" "}
-        <span className="hover:opacity-90">Rayan Kazi</span>
-      </span>
+    <footer className="mt-auto border-t border-border py-6">
+      <p className="text-sm text-neutral-700 dark:text-muted-foreground">
+        Last updated {lastUpdated}
+      </p>
     </footer>
   );
 }

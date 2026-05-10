@@ -14,22 +14,22 @@ const oxanium = Oxanium({
 });
 
 const navItems = [
-  { href: "/new/blog", label: "blog" },
-  { href: "/new/projects", label: "projects" },
-  { href: "/new#contact", label: "contact" },
+  { href: "/blog", label: "blog" },
+  { href: "/projects", label: "projects" },
+  { href: "/#contact", label: "contact" },
 ];
 
-export function NewHeader() {
+export function Header() {
   const pathname = usePathname();
   const name = `${personalInfo.name.first.toUpperCase()} ${personalInfo.name.last.toUpperCase()}`;
   const initials = `${personalInfo.name.first[0]}${personalInfo.name.last[0]}`;
 
   const isActive = (href: string) => {
-    if (href === "/new/blog") {
+    if (href === "/blog") {
       return pathname === href || pathname.startsWith(`${href}/`);
     }
 
-    if (href === "/new/projects") {
+    if (href === "/projects") {
       return pathname === href || pathname.startsWith(`${href}/`);
     }
 
@@ -39,7 +39,7 @@ export function NewHeader() {
   return (
     <header className="flex items-center justify-between gap-5 py-8">
       <Link
-        href="/new"
+        href="/"
         className={cn(
           oxanium.className,
           "shrink-0 font-bold tracking-normal text-xl text-foreground pt-1",
