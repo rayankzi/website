@@ -2,10 +2,10 @@ import Image from "next/image";
 
 import {
   Accordion,
-  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+  AccordionContent,
+} from "@/components/animate-ui/components/radix/accordion";
 import {
   Card,
   CardContent,
@@ -13,7 +13,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/animate-ui/components/radix/tabs";
 import { education, projects, workExperience } from "@/lib/new-data";
 
 const educationBullets = [

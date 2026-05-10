@@ -1,6 +1,13 @@
 import Image from "next/image";
+import { Raleway } from "next/font/google";
 
+import { cn } from "@/lib/utils";
 import { personalInfo } from "@/lib/new-data";
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: "700",
+});
 
 export function IntroSection() {
   return (
@@ -18,7 +25,12 @@ export function IntroSection() {
         </div>
 
         <div className="flex min-w-0 flex-col gap-1.5">
-          <h1 className="text-xl font-semibold tracking-normal text-foreground sm:text-2xl">
+          <h1
+            className={cn(
+              raleway.className,
+              "text-xl font-bold tracking-normal text-foreground sm:text-2xl"
+            )}
+          >
             Hey, I&apos;m Rayan
           </h1>
           <div className="flex items-center gap-2 text-base text-muted-foreground sm:gap-3 sm:text-xl">

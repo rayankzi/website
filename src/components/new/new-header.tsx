@@ -1,7 +1,14 @@
 import { Link } from "next-view-transitions";
+import { Oxanium } from "next/font/google";
 
 import { ModeToggle } from "@/components/mode-toggle";
+import { cn } from "@/lib/utils";
 import { personalInfo } from "@/lib/new-data";
+
+const oxanium = Oxanium({
+  subsets: ["latin"],
+  weight: "700",
+});
 
 const navItems = [
   { href: "/new/blog", label: "blog" },
@@ -10,14 +17,17 @@ const navItems = [
 ];
 
 export function NewHeader() {
-  const name = `${personalInfo.name.first} ${personalInfo.name.last}`;
+  const name = `${personalInfo.name.first.toUpperCase()} ${personalInfo.name.last.toUpperCase()}`;
   const initials = `${personalInfo.name.first[0]}${personalInfo.name.last[0]}`;
 
   return (
     <header className="flex items-center justify-between gap-3 py-8">
       <Link
         href="/new"
-        className="shrink-0 font-bold tracking-normal text-foreground"
+        className={cn(
+          oxanium.className,
+          "shrink-0 font-bold tracking-normal text-xl text-foreground",
+        )}
       >
         <span className="sm:hidden">{initials}</span>
         <span className="hidden sm:inline">{name}</span>
