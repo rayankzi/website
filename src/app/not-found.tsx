@@ -1,8 +1,8 @@
 "use client";
 
 import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
-import { NewFooter } from "@/components/footer";
-import { NewHeader } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -27,7 +27,7 @@ export default function NotFound() {
         )}
       />
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-2xl flex-col px-4 sm:px-6">
-        <NewHeader />
+        <Header />
         <main className="flex flex-1 items-center py-16">
           <section className="flex max-w-lg flex-col gap-5">
             <p className="text-sm font-medium text-muted-foreground">404</p>
@@ -45,7 +45,7 @@ export default function NotFound() {
             </Button>
           </section>
         </main>
-        <NewFooter />
+        <Footer />
       </div>
     </div>
   );
