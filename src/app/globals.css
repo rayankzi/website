@@ -227,7 +227,7 @@ pre {
 
 code {
   font-size: 14px;
-  font-family: var(--font-geist-mono);
+  /* font-family: var(--font-geist-mono); */
 }
 
 /* Inline code styling */
