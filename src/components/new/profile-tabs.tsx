@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { UnderConstruction } from "@/components/new/under-construction";
 import {
   Accordion,
   AccordionItem,
@@ -101,10 +102,8 @@ export function ProfileTabs() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="projects" className="grid gap-4 sm:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
+        <TabsContent value="projects">
+          <UnderConstruction />
         </TabsContent>
       </Tabs>
     </section>
