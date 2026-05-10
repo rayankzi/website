@@ -88,9 +88,6 @@ export function ProfileTabs() {
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-4">
-                      <p className="text-sm leading-6 text-muted-foreground">
-                        {item.description}
-                      </p>
                       <ul className="flex list-disc flex-col gap-2 pl-5 text-sm text-muted-foreground">
                         {item.longBullets.map((bullet) => (
                           <li key={bullet}>{bullet}</li>

@@ -21,7 +21,7 @@ export function NewHeader() {
   const initials = `${personalInfo.name.first[0]}${personalInfo.name.last[0]}`;
 
   return (
-    <header className="flex items-center justify-between gap-3 py-8">
+    <header className="flex items-center justify-between gap-5 py-8">
       <Link
         href="/new"
         className={cn(
@@ -41,7 +41,7 @@ export function NewHeader() {
           <Link
             key={item.href}
             href={item.href}
-            className="rounded-md py-1 font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-md py-1 font-medium text-muted-foreground transition-colors hover:text-foreground tracking-tight"
           >
             {item.label}
           </Link>

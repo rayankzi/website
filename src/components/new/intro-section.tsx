@@ -28,7 +28,7 @@ export function IntroSection() {
           <h1
             className={cn(
               raleway.className,
-              "text-xl font-bold tracking-normal text-foreground sm:text-2xl"
+              "text-xl font-bold tracking-normal text-foreground sm:text-2xl",
             )}
           >
             Hey, I&apos;m Rayan
@@ -45,9 +45,11 @@ export function IntroSection() {
         </div>
       </div>
 
-      <p className="max-w-2xl text-base leading-7 text-muted-foreground">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+      <p className="max-w-2xl text-base leading-7">
+        <span className="text-black dark:text-muted-foreground">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </span>
       </p>
     </section>
   );

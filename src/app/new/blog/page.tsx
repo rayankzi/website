@@ -1,5 +1,6 @@
 import { Link } from "next-view-transitions";
 
+import { NewFooter } from "@/components/new/new-footer";
 import { NewHeader } from "@/components/new/new-header";
 import {
   Card,
@@ -52,6 +53,7 @@ export default function NewBlogPage() {
           ))}
         </div>
       </section>
+      <NewFooter />
     </main>
   );
 }

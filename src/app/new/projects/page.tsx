@@ -1,3 +1,4 @@
+import { NewFooter } from "@/components/new/new-footer";
 import { NewHeader } from "@/components/new/new-header";
 import { ProjectCard } from "@/components/new/profile-tabs";
 import { projects } from "@/lib/new-data";
@@ -25,6 +26,7 @@ export default function NewProjectsPage() {
           ))}
         </div>
       </section>
+      <NewFooter />
     </main>
   );
 }

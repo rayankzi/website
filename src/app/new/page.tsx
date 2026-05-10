@@ -1,5 +1,6 @@
 import { ContactSection } from "@/components/new/contact-section";
 import { IntroSection } from "@/components/new/intro-section";
+import { NewFooter } from "@/components/new/new-footer";
 import { NewHeader } from "@/components/new/new-header";
 import { ProfileTabs } from "@/components/new/profile-tabs";
 
@@ -14,6 +15,7 @@ export default function NewPage() {
       <IntroSection />
       <ProfileTabs />
       <ContactSection />
+      <NewFooter />
     </main>
   );
 }
