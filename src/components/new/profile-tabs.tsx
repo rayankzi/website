@@ -23,7 +23,7 @@ const educationBullets = [
 
 export function ProfileTabs() {
   return (
-    <section className="py-8">
+    <section className="py-4">
       <Tabs defaultValue="education" className="gap-6">
         <TabsList className="grid h-auto w-full grid-cols-3">
           <TabsTrigger value="education">Education</TabsTrigger>
