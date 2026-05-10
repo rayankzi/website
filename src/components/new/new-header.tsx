@@ -1,5 +1,8 @@
+"use client";
+
 import { Link } from "next-view-transitions";
 import { Oxanium } from "next/font/google";
+import { usePathname } from "next/navigation";
 
 import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
@@ -17,8 +20,21 @@ const navItems = [
 ];
 
 export function NewHeader() {
+  const pathname = usePathname();
   const name = `${personalInfo.name.first.toUpperCase()} ${personalInfo.name.last.toUpperCase()}`;
   const initials = `${personalInfo.name.first[0]}${personalInfo.name.last[0]}`;
+
+  const isActive = (href: string) => {
+    if (href === "/new/blog") {
+      return pathname === href || pathname.startsWith(`${href}/`);
+    }
+
+    if (href === "/new/projects") {
+      return pathname === href || pathname.startsWith(`${href}/`);
+    }
+
+    return false;
+  };
 
   return (
     <header className="flex items-center justify-between gap-5 py-8">
@@ -26,7 +42,7 @@ export function NewHeader() {
         href="/new"
         className={cn(
           oxanium.className,
-          "shrink-0 font-bold tracking-normal text-xl text-foreground",
+          "shrink-0 font-bold tracking-normal text-xl text-foreground pt-1",
         )}
       >
         <span className="sm:hidden">{initials}</span>
@@ -41,7 +57,10 @@ export function NewHeader() {
           <Link
             key={item.href}
             href={item.href}
-            className="rounded-md py-1 font-medium text-muted-foreground transition-colors hover:text-foreground tracking-tight"
+            className={cn(
+              "rounded-md py-1 font-medium tracking-tight transition-colors hover:text-foreground",
+              isActive(item.href) ? "text-foreground" : "text-muted-foreground",
+            )}
           >
             {item.label}
           </Link>

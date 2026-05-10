@@ -12,7 +12,7 @@ const raleway = Raleway({
 export function IntroSection() {
   return (
     <section className="flex flex-col gap-8 py-4">
-      <div className="flex items-center gap-4 sm:gap-6">
+      <div className="flex items-center gap-4">
         <div className="shrink-0 rounded-full sm:border sm:border-border sm:p-1 sm:shadow-sm">
           <Image
             src="/images/profile.png"

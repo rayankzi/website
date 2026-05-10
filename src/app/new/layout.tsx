@@ -1,6 +1,8 @@
 "use client";
 
 import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
+import { NewFooter } from "@/components/new/new-footer";
+import { NewHeader } from "@/components/new/new-header";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import React from "react";
@@ -27,7 +29,11 @@ export default function NewLayout({
           "bg-[radial-gradient(ellipse_at_bottom,_#dbeafe_0%,_#f8fafc_48%,_#fff_100%)] dark:bg-[radial-gradient(ellipse_at_bottom,_#262626_0%,_#000_100%)]"
         )}
       />
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-2xl flex-col px-4 sm:px-6">
+        <NewHeader />
+        <main className="flex flex-1 flex-col">{children}</main>
+        <NewFooter />
+      </div>
     </div>
   );
 }
