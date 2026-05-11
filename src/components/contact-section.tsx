@@ -1,4 +1,5 @@
 import { personalInfo } from "@/lib/data";
+import Link from "next/link";
 
 export function ContactSection() {
   return (
@@ -8,19 +9,20 @@ export function ContactSection() {
         <p className="text-base dark:text-muted-foreground">
           <span className="text-black dark:text-muted-foreground">
             Feel free to contact me at{" "}
-            <a
+            <Link
               href={`mailto:${personalInfo.email}`}
               className="font-medium text-foreground underline-offset-4 hover:underline"
             >
               {personalInfo.email}
-            </a>
+            </Link>
             . or connect with me on{" "}
-            <a
+            <Link
               href="https://www.linkedin.com/in/rayan-kazi-dev/"
+              target="_blank"
               className="font-medium text-foreground underline-offset-4 hover:underline"
             >
               Linkedin
-            </a>
+            </Link>
             .
           </span>
         </p>

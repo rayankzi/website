@@ -20,11 +20,6 @@ import {
 } from "@/components/animate-ui/components/radix/tabs";
 import { education, workExperience } from "@/lib/data";
 
-const educationBullets = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-];
-
 export function ProfileTabs() {
   return (
     <section className="py-4">
@@ -48,12 +43,8 @@ export function ProfileTabs() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1 text-sm text-muted-foreground">
-                  <p>{item.description}</p>
-                  <p>{item.additionalInfo}</p>
-                </div>
                 <ul className="flex list-disc flex-col gap-2 pl-5 text-sm text-muted-foreground">
-                  {educationBullets.map((bullet) => (
+                  {item.description.map((bullet) => (
                     <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
