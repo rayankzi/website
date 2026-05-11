@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { ModeToggle } from "@/components/mode-toggle";
 import { cn } from "@/lib/utils";
-import { personalInfo } from "@/lib/new-data";
+import { personalInfo } from "@/lib/data";
 
 const oxanium = Oxanium({
   subsets: ["latin"],

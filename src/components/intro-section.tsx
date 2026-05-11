@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Raleway } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { personalInfo } from "@/lib/new-data";
+import { personalInfo } from "@/lib/data";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -47,8 +47,9 @@ export function IntroSection() {
 
       <p className="max-w-2xl text-base leading-7">
         <span className="text-black dark:text-muted-foreground">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          I&apos;m a 2nd year student at ASU with research interests in the
+          intersection of AI and education and experience creating beautiful
+          websites for the public.
         </span>
       </p>
     </section>

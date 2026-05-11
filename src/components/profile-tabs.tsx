@@ -18,7 +18,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/animate-ui/components/radix/tabs";
-import { education, workExperience } from "@/lib/new-data";
+import { education, workExperience } from "@/lib/data";
 
 const educationBullets = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

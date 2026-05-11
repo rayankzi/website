@@ -1,4 +1,4 @@
-import { personalInfo } from "@/lib/new-data";
+import { personalInfo } from "@/lib/data";
 
 export function ContactSection() {
   return (
