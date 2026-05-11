@@ -8,20 +8,20 @@ export function ContactSection() {
         <h2 className="text-2xl font-semibold text-foreground">Contact</h2>
         <p className="text-base dark:text-muted-foreground">
           <span className="text-black dark:text-muted-foreground">
-            Feel free to contact me at{" "}
+            Feel free to email me at{" "}
             <Link
               href={`mailto:${personalInfo.email}`}
               className="font-medium text-foreground underline-offset-4 hover:underline"
             >
               {personalInfo.email}
-            </Link>
-            . or connect with me on{" "}
+            </Link>{" "}
+            or connect with me on{" "}
             <Link
               href="https://www.linkedin.com/in/rayan-kazi-dev/"
               target="_blank"
               className="font-medium text-foreground underline-offset-4 hover:underline"
             >
-              Linkedin
+              LinkedIn
             </Link>
             .
           </span>
