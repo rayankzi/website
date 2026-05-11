@@ -1,7 +1,7 @@
 export async function getLastCommitDate(): Promise<string> {
   try {
     const res = await fetch(
-      "https://api.github.com/repos/rayankzi/website/commits?per_page=1"
+      "https://api.github.com/repos/rayankzi/website/commits?per_page=1",
     );
     if (!res.ok) return "recently";
     const data = await res.json();

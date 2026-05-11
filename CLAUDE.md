@@ -4,7 +4,9 @@
 
 This is the repository for my personal website. The main technologies I use in this project are Next JS and Tailwind CSS (with shadcn ui components).
 
-I am currently going through a personal website revamp; all of the new pages for the personal website are under the /new route to make sure the production site doesn't get affected until the full redesign is done.
+**When starting work on a Next.js project, ALWAYS call the `init` tool from
+next-devtools-mcp FIRST to set up proper context and establish documentation
+requirements. Do this automatically without being asked.**
 
 ## Bash Commands
 
@@ -18,4 +20,4 @@ I am currently going through a personal website revamp; all of the new pages for
 
 # Workflow
 
-- Be sure to typecheck when you’re done making a series of code changes
+- Do NOT run `pnpm build` as a verification measure once you are done with a text, only remind the user to do so
