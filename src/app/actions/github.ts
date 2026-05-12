@@ -1,4 +1,11 @@
+"use server";
+
+import { cacheLife } from "next/cache";
+
 export async function getLastCommitDate(): Promise<string> {
+  "use cache";
+  cacheLife("days"); // built-in profile, ~1 day
+
   try {
     const res = await fetch(
       "https://api.github.com/repos/rayankzi/website/commits?per_page=1",
