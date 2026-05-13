@@ -30,7 +30,7 @@ export default async function BlogPage() {
         <h1
           className={cn(
             oxanium.className,
-            "text-3xl font-semibold text-foreground"
+            "text-3xl font-semibold text-foreground",
           )}
         >
           BLOG
