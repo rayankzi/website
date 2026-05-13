@@ -5,6 +5,7 @@ import fs from "fs/promises";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import path from "path";
+import { ViewTransition } from "react";
 
 function calculateReadTime(content: string): string {
   const wordsPerMinute = 200;
@@ -98,19 +99,26 @@ export default async function BlogPostPage({
       </Link>
 
       <header className="flex flex-col gap-5 border-b border-border pb-8">
-        <div className="text-sm text-muted-foreground">
-          {formatDate(metadata.date)} · {readTime}
-        </div>
-        <h1 className="text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
-          {metadata.title}
-        </h1>
+        <ViewTransition name={`blog-meta-${slug}`} share="morph">
+          <div className="text-sm text-muted-foreground">
+            {formatDate(metadata.date)} · {readTime}
+          </div>
+        </ViewTransition>
+        <ViewTransition name={`blog-title-${slug}`} share="morph">
+          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+            {metadata.title}
+          </h1>
+        </ViewTransition>
       </header>
 
-      <div className="prose prose-neutral max-w-none dark:prose-invert">
-        <Post />
-      </div>
+      <ViewTransition enter="slide-up" default="none">
+        <div className="prose prose-neutral max-w-none dark:prose-invert">
+          <Post />
+        </div>
+      </ViewTransition>
 
       {relatedPosts.length > 0 && (
+        <ViewTransition enter="slide-up" default="none">
         <section className="flex flex-col gap-5 border-t border-border pt-8">
           <h2 className="text-2xl font-semibold tracking-tight">
             You might also like
@@ -134,6 +142,7 @@ export default async function BlogPostPage({
             ))}
           </div>
         </section>
+        </ViewTransition>
       )}
     </article>
   );

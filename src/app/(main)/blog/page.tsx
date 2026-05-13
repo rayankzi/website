@@ -2,6 +2,7 @@ import { getMDXMetadata } from "@/lib/mdx";
 import { cn, formatDate } from "@/lib/utils";
 import { Oxanium } from "next/font/google";
 import Link from "next/link";
+import { ViewTransition } from "react";
 
 const oxanium = Oxanium({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default async function BlogPage() {
       <div className="flex flex-col">
         {posts.map((post) => {
           const readTime = formatReadTime(post.readTime);
+          const slug = post.href.split("/").pop();
 
           return (
             <Link
@@ -51,13 +53,17 @@ export default async function BlogPage() {
               className="group -mx-3 flex rounded-md border border-transparent px-3 py-5 transition-colors duration-300 hover:border-border hover:bg-accent/40"
             >
               <div className="flex w-full flex-col gap-1.5">
-                <span className="text-xs text-muted-foreground">
-                  {formatDate(post.date)}
-                  {readTime ? ` · ${readTime}` : null}
-                </span>
-                <h2 className="text-base font-medium leading-6 text-foreground transition-colors duration-300 group-hover:text-muted-foreground">
-                  {post.title}
-                </h2>
+                <ViewTransition name={`blog-meta-${slug}`} share="morph">
+                  <span className="text-xs text-muted-foreground">
+                    {formatDate(post.date)}
+                    {readTime ? ` · ${readTime}` : null}
+                  </span>
+                </ViewTransition>
+                <ViewTransition name={`blog-title-${slug}`} share="morph">
+                  <h2 className="text-base font-medium leading-6 text-foreground transition-colors duration-300 group-hover:text-muted-foreground">
+                    {post.title}
+                  </h2>
+                </ViewTransition>
               </div>
             </Link>
           );
