@@ -25,12 +25,16 @@ export function ProfileTabs() {
     <section className="py-4">
       <Tabs defaultValue="education" className="gap-6">
         <TabsList className="grid h-auto w-full grid-cols-3">
-          <TabsTrigger value="education">Education</TabsTrigger>
-          <TabsTrigger value="experience">
+          <TabsTrigger value="education" className="cursor-pointer">
+            Education
+          </TabsTrigger>
+          <TabsTrigger value="experience" className="cursor-pointer">
             <span className="hidden xs:inline">Professional Experience</span>
             <span className="xs:hidden">Experience</span>
           </TabsTrigger>
-          <TabsTrigger value="projects">Projects</TabsTrigger>
+          <TabsTrigger value="projects" className="cursor-pointer">
+            Projects
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="education" className="flex flex-col gap-4">
@@ -62,7 +66,7 @@ export function ProfileTabs() {
                     key={`${item.company}-${item.year}`}
                     value={`${item.company}-${item.year}`}
                   >
-                    <AccordionTrigger>
+                    <AccordionTrigger className="cursor-pointer">
                       <div className="flex w-full flex-col gap-1 pr-4 sm:flex-row sm:items-start sm:justify-between">
                         <div className="flex flex-col gap-1">
                           <span className="text-base font-medium text-foreground">
