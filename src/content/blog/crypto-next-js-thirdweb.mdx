@@ -9,19 +9,21 @@ Cryptocurrency and Web3 has been gaining a lot of traction recently. We're going
 
 Create a new Next JS project with Tailwind CSS:
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app # npm
-yarn create next-app --example with-tailwindcss with-tailwindcss-app # yarn
-```
+<Code code={`npx create-next-app --example with-tailwindcss with-tailwindcss-app # npm
+yarn create next-app --example with-tailwindcss with-tailwindcss-app # yarn`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 I am using TypeScript in my app, but using JavaScript won't be an issue.
 
 Install the following dependencies:
 
-```bash
-npm i @3rdweb/hooks @3rdweb/sdk @3rdweb/react ethers # npm
-yarn add @3rdweb/hooks @3rdweb/sdk @3rdweb/react ethers # yarn
-```
+<Code code={`npm i @3rdweb/hooks @3rdweb/sdk @3rdweb/react ethers # npm
+yarn add @3rdweb/hooks @3rdweb/sdk @3rdweb/react ethers # yarn`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 > You need a Metamask Wallet to continue with this tutorial. Create one by clicking [here](https://metamask.io/).
 
@@ -73,8 +75,7 @@ Now we can start working on our Next JS app! The first thing we need is to conne
 
 Go to the `pages/_app.tsx` file and add the following code:
 
-```jsx title="pages/_app.tsx"
-import "../styles/globals.css";
+<Code code={`import "../styles/globals.css";
 
 import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
 
@@ -94,21 +95,23 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
-```
+export default MyApp;`}>
+  <CodeHeader copyButton>pages/_app.tsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 This basically added the Thirdweb provider to our app. The supported chain IDs are an array of IDS for different networks an app can use. 4 is the ID for the Rinkeby test network. The connectors object is used to connect to the different networks. These are the required props for the `ThirdwebWeb3Provider` component.
 
 Now let's go to `index.tsx` page and use the `useWeb3` hook from thirdweb to connect our wallet. We will extract the `address` property and the `connectWallet` function.
 
-```ts title="index.tsx"
-const { address, connectWallet } = useWeb3();
-```
+<Code code={`const { address, connectWallet } = useWeb3();`}>
+  <CodeHeader copyButton>index.tsx</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Now we can say that if there is no address, we can display a connect wallet button; otherwise, we can display the user's wallet address.
 
-```tsx title="index.tsx"
-{
+<Code code={`{
   address ? (
     <h1>Hello, {address}</h1>
   ) : (
@@ -116,35 +119,38 @@ Now we can say that if there is no address, we can display a connect wallet butt
       Connect Wallet
     </a>
   );
-}
-```
+}`}>
+  <CodeHeader copyButton>index.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 Now we can add an `onClick` to the button, saying that if you click on the button, call the `connectWallet` function.
 
-```jsx
-<a onClick={() => connectWallet("injected")}></a>
-```
+<Code code={`<a onClick={() => connectWallet("injected")}></a>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 The injected basically means we are using a MetaMask wallet to connect to the app.
 
 We can also extract the `disconnectWallet` function to disconnect our users
 from the website.
 
-```jsx
-<a
+<Code code={`<a
   className="inline-block cursor-pointer rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
   onClick={() => disconnectWallet()}
 >
   <span className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent">
     Disconnect Wallet
   </span>
-</a>
-```
+</a>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 So as of right now, the component exported from the `index.tsx` file should look like this:
 
-```tsx title="index.tsx"
-<div className="p-5">
+<Code code={`<div className="p-5">
   {address ? (
     <div>
       <h1>Hello, {address}</h1>
@@ -166,25 +172,27 @@ So as of right now, the component exported from the `index.tsx` file should look
       Connect Wallet
     </a>
   )}
-</div>
-```
+</div>`}>
+  <CodeHeader copyButton>index.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 ### Minting Token on the Frontend
 
 Now let's mint some tokens! First lets create a new component called `MintToken` and render it when we have the wallet address.
 
-```tsx title="MintToken.tsx"
-const MintToken = () => {
+<Code code={`const MintToken = () => {
   return <div>Mint token</div>;
 };
 
-export default MintToken;
-```
+export default MintToken;`}>
+  <CodeHeader copyButton>MintToken.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 <br />
 
-```tsx title="index.tsx"
-<div>
+<Code code={`<div>
   <h1>Hello, {address}</h1>
 
   <a
@@ -197,31 +205,34 @@ export default MintToken;
   </a>
 
   <MintToken />
-</div>
-```
+</div>`}>
+  <CodeHeader copyButton>index.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 Now inside of our Mint token component, lets create a button that when clicked will mint the user 5 apples (or your new crypto that you created).
 
-```tsx title="MintToken.tsx"
-<a className="group relative inline-block focus:outline-none focus:ring">
+<Code code={`<a className="group relative inline-block focus:outline-none focus:ring">
   <span className="absolute inset-0 translate-x-0 translate-y-0 bg-red-300 transition-transform group-hover:translate-x-1.5 group-hover:translate-y-1.5"></span>
 
   <span className="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest">
     Mint 5 Apples
   </span>
-</a>
-```
+</a>`}>
+  <CodeHeader copyButton>MintToken.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 Now this is where the magic happens. Lets extract the `provider` property from the `useWeb3` hook.
 
-```ts title="MintToken.tsx"
-const { provider } = useWeb3();
-```
+<Code code={`const { provider } = useWeb3();`}>
+  <CodeHeader copyButton>MintToken.tsx</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Now we can create the SDK and Token module using our provider and the `useMemo` hook (so that we can cache this data).
 
-```ts title="MintToken.tsx"
-const sdk = useMemo(() => {
+<Code code={`const sdk = useMemo(() => {
   if (provider) return new ThirdwebSDK(provider.getSigner());
   return undefined;
 }, [provider]);
@@ -230,19 +241,22 @@ const tokenModule = useMemo(() => {
   if (sdk)
     return sdk.getTokenModule("0x793DDF77487883b38c4E9BB0739Fdc89d3327472");
   return undefined;
-}, [sdk]);
-```
+}, [sdk]);`}>
+  <CodeHeader copyButton>MintToken.tsx</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Notice that instead of using a private key when creating a new SDK, I use the providers getSigner function, which basically takes whoever is signed in to the app and creates the SDK with that. You can get the token module the same way you did when you imported the token onto Metamask.
 
 Now lets create a function to mint the token. I will set a fixed amount of 5 apples, but you can use an input to capture how much of your currency you want to mint.
 
-```ts title="MintToken.tsx"
-const amount = ethers.utils.parseUnits("5", 18);
+<Code code={`const amount = ethers.utils.parseUnits("5", 18);
 const mintToken = useCallback(() => {
   tokenModule?.mint(amount);
-}, [tokenModule, amount]);
-```
+}, [tokenModule, amount]);`}>
+  <CodeHeader copyButton>MintToken.tsx</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 The amount variable is used to set the amount of tokens to mint. 18 represents the number of decimal places. It is almost always 18.
 
@@ -250,8 +264,7 @@ The amount variable is used to set the amount of tokens to mint. 18 represents t
 
 The entire component should look like this:
 
-```tsx title="MintToken.tsx"
-import { useWeb3 } from "@3rdweb/hooks";
+<Code code={`import { useWeb3 } from "@3rdweb/hooks";
 import { NextComponentType } from "next";
 import { useCallback, useMemo } from "react";
 import { ThirdwebSDK } from "@3rdweb/sdk";
@@ -292,8 +305,10 @@ const MintToken: NextComponentType = () => {
   );
 };
 
-export default MintToken;
-```
+export default MintToken;`}>
+  <CodeHeader copyButton>MintToken.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 ## Conclusion
 

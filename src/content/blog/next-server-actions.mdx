@@ -17,35 +17,39 @@ I'll teach you how to use server actions today by building a mini bookshelf! We 
 
 Before we create the app, let's install the Vercel CLI as follows:
 
-```bash
-npm i -g vercel
-```
+<Code code={`npm i -g vercel`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 To create the new Next JS app, use the following command and respond to all of the subsequent prompts.
 
-```bash
-npx create-next-app@latest
-```
+<Code code={`npx create-next-app@latest`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 Once the app is created and opened, add the following to the `next.config.js` file to use server actions, as it is an alpha feature:
 
-```javascript
-/** @type {import('next').NextConfig} */
+<Code code={`/** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     serverActions: true,
   },
 };
 
-module.exports = nextConfig;
-```
+module.exports = nextConfig;`}>
+  <CodeHeader copyButton>next.config.js</CodeHeader>
+  <CodeBlock lang="javascript" />
+</Code>
 
 Because we will be using Prisma later on, let's install it right now:
 
-```bash
-npm i --save-dev prisma
-npm i @prisma/client
-```
+<Code code={`npm i --save-dev prisma
+npm i @prisma/client`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 Now set up Vercel deployment for the project using the Vercel CLI by just typing in `vercel` to your terminal.
 
@@ -61,23 +65,24 @@ Go to your project dashboard on Vercel and go to the storage tab. Then press the
 
 Once the database is created, go to the getting started tab and run the following commands in the terminal:
 
-```bash
-vercel link
-vercel env pull .env.local
-```
+<Code code={`vercel link
+vercel env pull .env.local`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 These commands will put the necessary environment variables needed to use Prisma. Let's first initialize it using this command:
 
-```bash
-npx prisma init
-```
+<Code code={`npx prisma init`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 > Make sure to remove the `.env` file Prisma automatically generates, as we already pulled all of the necessary environment variables in the `.env.local` file.
 
 Now that Prisma is working, use the following Prisma schema:
 
-```bash
-generator client {
+<Code code={`generator client {
   provider = "prisma-client-js"
 }
 
@@ -94,15 +99,18 @@ model Book {
   name        String   @unique
   genre       String
   description String
-}
-```
+}`}>
+  <CodeHeader copyButton>prisma/schema.prisma</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 Now let's push this schema to the database and make it ready for the client with:
 
-```bash
-npx prisma db push
-npx prisma generate
-```
+<Code code={`npx prisma db push
+npx prisma generate`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 The next step for the database is populating it with some data; you can do whatever you want (like making a script or manually doing it in the studio), but make sure the Book table has some values.
 
@@ -110,8 +118,7 @@ The next step for the database is populating it with some data; you can do whate
 
 The final step for the database is setting up the client. In the `src/app/` directory, create a `lib` folder and a file inside of it called `prisma.ts` and paste the following code:
 
-```typescript
-import { PrismaClient } from "@prisma/client";
+<Code code={`import { PrismaClient } from "@prisma/client";
 
 let prisma: PrismaClient;
 
@@ -127,25 +134,27 @@ if (process.env.NODE_ENV === "production") {
   prisma = globalWithPrisma.prisma;
 }
 
-export default prisma;
-```
+export default prisma;`}>
+  <CodeHeader copyButton>src/app/lib/prisma.ts</CodeHeader>
+  <CodeBlock lang="typescript" />
+</Code>
 
 ## Setting Up Basic UI
 
 Ok, so we can now focus on the front end. For the home page (`src/app/page.tsx`), we can first fetch all of the books from the database as follows:
 
-```typescript
-import prisma from "@/lib/prisma";
+<Code code={`import prisma from "@/lib/prisma";
 
 export default async function Home() {
   const books = await prisma.book.findMany();
-}
-```
+}`}>
+  <CodeHeader copyButton>src/app/page.tsx</CodeHeader>
+  <CodeBlock lang="typescript" />
+</Code>
 
 Then we can loop through the books array and display the following UI:
 
-```typescript
-import Link from "next/link";
+<Code code={`import Link from "next/link";
 
 import prisma from "@/lib/prisma";
 
@@ -176,8 +185,10 @@ export default async function Home() {
       </div>
     </main>
   );
-}
-```
+}`}>
+  <CodeHeader copyButton>src/app/page.tsx</CodeHeader>
+  <CodeBlock lang="typescript" />
+</Code>
 
 You should have the following on your screen (the difference would be what you put in the database):
 
@@ -189,14 +200,14 @@ The button with the text "Create a new book" right after the map function will a
 
 Now let's create a new folder called `edit` in the `src/app` directory and a new page file with the default server component configuration:
 
-```typescript
-export default async function Edit() {}
-```
+<Code code={`export default async function Edit() {}`}>
+  <CodeHeader copyButton>src/app/edit/page.tsx</CodeHeader>
+  <CodeBlock lang="typescript" />
+</Code>
 
 Let's add the following form so that we can get user input regarding the creation of the new book (the name, genre, and description fields):
 
-```typescript
-import Link from "next/link";
+<Code code={`import Link from "next/link";
 
 export default async function Edit() {
   return (
@@ -266,8 +277,10 @@ export default async function Edit() {
       </div>
     </main>
   );
-}
-```
+}`}>
+  <CodeHeader copyButton>src/app/edit/page.tsx</CodeHeader>
+  <CodeBlock lang="typescript" />
+</Code>
 
 It should look something like this:
 
@@ -275,17 +288,17 @@ It should look something like this:
 
 Now here is where the fun begins. To create a server action, create an asynchronous function with the `"use server"` directive at the top inside of the server component. Since we are using the action in a form, the argument will be of type `FormData`:
 
-```typescript
-async function createBook(data: FormData) {
+<Code code={`async function createBook(data: FormData) {
   "use server";
   ...
-}
-```
+}`}>
+  <CodeHeader copyButton>typescript</CodeHeader>
+  <CodeBlock lang="typescript" />
+</Code>
 
 We can create a new row for the new book in the database using Prisma as follows:
 
-```typescript
-async function createBook(data: FormData) {
+<Code code={`async function createBook(data: FormData) {
   "use server";
 
   await prisma.book.create({
@@ -295,16 +308,19 @@ async function createBook(data: FormData) {
       description: data.get("description") as string,
     },
   });
-}
-```
+}`}>
+  <CodeHeader copyButton>typescript</CodeHeader>
+  <CodeBlock lang="typescript" />
+</Code>
 
 To invoke this server action, pass this function into the action prop of the form tag:
 
-```xml
-<form action={createBook}>
+<Code code={`<form action={createBook}>
   ...
-</form>
-```
+</form>`}>
+  <CodeHeader copyButton>tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 And just like that, we can now submit the form to add new books to our database!
 

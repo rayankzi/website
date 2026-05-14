@@ -13,17 +13,19 @@ Web3 has been recently gaining a lot of attention, and many new developers are j
 
 Create a new Next JS project with Tailwind CSS
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app # npm
-yarn create next-app --example with-tailwindcss with-tailwindcss-app # yarn
-```
+<Code code={`npx create-next-app --example with-tailwindcss with-tailwindcss-app # npm
+yarn create next-app --example with-tailwindcss with-tailwindcss-app # yarn`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 Install the following dependencies:
 
-```bash
-npm i @3rdweb/hooks @3rdweb/sdk ethers uuid react-hot-toast # npm
-yarn add @3rdweb/hooks @3rdweb/sdk ethers uuid react-hot-toast # yarn
-```
+<Code code={`npm i @3rdweb/hooks @3rdweb/sdk ethers uuid react-hot-toast # npm
+yarn add @3rdweb/hooks @3rdweb/sdk ethers uuid react-hot-toast # yarn`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 ### The Thirdweb Project
 
@@ -55,8 +57,7 @@ Once you have created the app, go into it, and click "View Key". Then copy the H
 
 First, we need to wrap our app with a Thirdweb provider so we can use the library. Go to the `_app.tsx` file and add the following code:
 
-```tsx title="_app.tsx"
-const supportedChainIds = [4];
+<Code code={`const supportedChainIds = [4];
 const connectors = {
   injected: {},
 };
@@ -70,15 +71,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </ThirdwebWeb3Provider>
   );
-}
-```
+}`}>
+  <CodeHeader copyButton>_app.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 The supported chain IDs array basically says what networks do you want the user to login from. 4 represents the Rinkeby test networks. The connectors object represents how you want the user to login (MetaMask, Coinbase, etc.). The `injected` property is for MetaMask.
 
 Now to allow the user to connect their wallet, we can create a component for our button. Create a directory called `components`, and inside create a new file called `Connect.tsx`. Inside, paste the following code:
 
-```tsx title="components/Connect.tsx"
-import { NextComponentType } from "next";
+<Code code={`import { NextComponentType } from "next";
 
 const Connect: NextComponentType = () => {
   return (
@@ -92,22 +94,26 @@ const Connect: NextComponentType = () => {
   );
 };
 
-export default Connect;
-```
+export default Connect;`}>
+  <CodeHeader copyButton>components/Connect.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 It is basically just a fancy button that says connect wallet. To implement the functionality for that button, you need to use the `useWeb3` hook that Thirdweb provides. You can pull it in like this:
 
-```jsx
-const { connectWallet } = useWeb3();
-```
+<Code code={`const { connectWallet } = useWeb3();`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 That pulls in the `connectWallet` function from the hook. Now we can add an on click listener to the button so that whenever it is clicked, we can connect the user using their MetaMask wallet:
 
-```jsx
-<a className="..." onClick={() => connectWallet("injected")}>
+<Code code={`<a className="..." onClick={() => connectWallet("injected")}>
   ...
-</a>
-```
+</a>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Now you should see a popup for MetaMask asking you to authorize the website to use your wallet.
 
@@ -115,22 +121,22 @@ Now you should see a popup for MetaMask asking you to authorize the website to u
 
 We can now conditionally render the page so that if your wallet is connected, the minting button (which we will create) will appear, otherwise the connect wallet button will be there. This can be accomplished with the `address` property from the `useWeb3` hook.
 
-```jsx
-// get the address of user's wallet
+<Code code={`// get the address of user's wallet
 const { address } = useWeb3();
 
 // if it exists, render the mint component, otherwise the connect component
 {
   address ? <Mint /> : <Connect />;
-}
-```
+}`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 ### The Mint Button
 
 Now we need to create the mint button. Create a new component called `Mint.tsx` and paste the following code:
 
-```tsx title="components/Mint.tsx"
-import { NextComponentType } from "next";
+<Code code={`import { NextComponentType } from "next";
 
 const Mint: NextComponentType = () => {
   return (
@@ -142,27 +148,30 @@ const Mint: NextComponentType = () => {
   );
 };
 
-export default Mint;
-```
+export default Mint;`}>
+  <CodeHeader copyButton>components/Mint.tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 It is another fancy button that says "Mint a Cool Robot". You can say whatever you want, but I said robot because we will be using a random robot picture from Dicebear to mint the NFT. Anyway, let's create an asynchronous function that will be called whenever we press the mint button.
 
-```jsx
-const mint = async () => {};
-```
+<Code code={`const mint = async () => {};`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Then we can add an on click listener to the button:
 
-```jsx
-<a className="..." onClick={() => mint()}>
+<Code code={`<a className="..." onClick={() => mint()}>
   Mint a Cool Robot
-</a>
-```
+</a>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Now for our mint function, we will send a POST request to an API endpoint we will create. In the body of the request, we will send the address of the account that wants the NFT (get it from the web3 hook). So basically it would look like this:
 
-```jsx
-const { address } = useWeb3();
+<Code code={`const { address } = useWeb3();
 
 const mint = async () =>
   await fetch("/api/mint", {
@@ -171,25 +180,29 @@ const mint = async () =>
       "content-type": "application/json",
     },
     body: JSON.stringify({ address }),
-  });
-```
+  });`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 ### The API Endpoint
 
 Now we need to create a new API endpoint. Go into the `api` directory in the `pages` directory and create a new file called `mint.ts`. This is where the we will mint the NFT. Paste in the following code:
 
-```js title="api/mint.ts"
-export default async function handler(
+<Code code={`export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
-) {}
-```
+) {}`}>
+  <CodeHeader copyButton>api/mint.ts</CodeHeader>
+  <CodeBlock lang="js" />
+</Code>
 
 This is where we will write all the logic. First we need to get the account address from the request body.
 
-```tsx
-const { address } = req.body;
-```
+<Code code={`const { address } = req.body;`}>
+  <CodeHeader copyButton>tsx</CodeHeader>
+  <CodeBlock lang="tsx" />
+</Code>
 
 Now we need to create a new wallet that will actually mint the NFTs. You will need the private key of the MetaMask wallet you used to create the contract. To get that, hit the MetaMask icon on your browser, and hit the 3 dots. Select account details and click export private key.
 
@@ -199,12 +212,13 @@ It will ask you to type in your password before it gives you the key. Once you h
 
 Remember the Alchemy URL I told you to save for later? Well, we need it right now! Create another environment variable called `ALCHEMY_URL` and set it equal to the URL. Now we can create the wallet as follows:
 
-```ts
-const wallet = new ethers.Wallet(
+<Code code={`const wallet = new ethers.Wallet(
   process.env.PRIVATE_KEY as string,
   ethers.getDefaultProvider(process.env.ALCHEMY_URL as string)
-);
-```
+);`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Before you do anything, RESTART you Next JS server so that it loads the environment variables. You should see this pop up on your terminal:
 
@@ -212,9 +226,10 @@ Before you do anything, RESTART you Next JS server so that it loads the environm
 
 This creates a new wallet with the Rinkeby test network. We can now create an instance of the Thirdweb SDK with this wallet like this:
 
-```ts
-const sdk = new ThirdwebSDK(wallet);
-```
+<Code code={`const sdk = new ThirdwebSDK(wallet);`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Now to get the specific NFT collection we created, go to the dashboard and copy the contract to your clipboard.
 
@@ -222,34 +237,38 @@ Now to get the specific NFT collection we created, go to the dashboard and copy 
 
 Then we can use the `getNFTModule` method from the Thirdweb SDK:
 
-```js
-const nftModule = sdk.getNFTModule("<contract address here>");
-```
+<Code code={`const nftModule = sdk.getNFTModule("<contract address here>");`}>
+  <CodeHeader copyButton>js</CodeHeader>
+  <CodeBlock lang="js" />
+</Code>
 
 Now we can get to the fun part, minting the NFT! We first need to create the metadata that the NFT will use. I will make the name of the NFT a random 4 digit number. The description will be that it is a cool robot. For the image, I will use the "bottts" art from the Dicebear API. Here is my metadata object (you can make yours whatever you want):
 
-```js
-const nftMetadata = {
-  name: `#${Math.floor(1000 + Math.random() * 9000)}`,
+<Code code={`const nftMetadata = {
+  name: \`#\${Math.floor(1000 + Math.random() * 9000)}\`,
   description: "Cool Robot",
-  image: `https://avatars.dicebear.com/api/bottts/${uuidv4()}.svg`,
-};
-```
+  image: \`https://avatars.dicebear.com/api/bottts/\${uuidv4()}.svg\`,
+};`}>
+  <CodeHeader copyButton>js</CodeHeader>
+  <CodeBlock lang="js" />
+</Code>
 
 In the image field, I am calling a function called `uuidv4`. This will generate a random ID that follows the v4 convention. It is being used as a seed for the robot, so every time a new ID is generated, a completely new robot shows up. You will need to add this import statement at the top:
 
-```js
-import { v4 as uuidv4 } from "uuid";
-```
+<Code code={`import { v4 as uuidv4 } from "uuid";`}>
+  <CodeHeader copyButton>js</CodeHeader>
+  <CodeBlock lang="js" />
+</Code>
 
 Now to mint the NFT, we can use the `mintTo` method from the NFT collection, and pass in our metadata. After its done minting, we can send the metadata as JSON to the client saying that we're done minting. We should also catch an error and send that as JSON if the minting fails.
 
-```js
-await nftModule
+<Code code={`await nftModule
   .mintTo(address, nftMetadata)
   .then((metadata) => res.status(200).json(metadata))
-  .catch((error) => res.status(404).json({ msg: "Error minting NFT", error }));
-```
+  .catch((error) => res.status(404).json({ msg: "Error minting NFT", error }));`}>
+  <CodeHeader copyButton>js</CodeHeader>
+  <CodeBlock lang="js" />
+</Code>
 
 Now if we press the button and wait (it takes a little bit because they have to take some gas fees), click into your NFT Collection contract on Thirdweb, and boom! You have a new NFT ready to go.
 
@@ -259,40 +278,44 @@ Now if we press the button and wait (it takes a little bit because they have to 
 
 Now as a good UX element, we are going to add a confirmation notification when the NFT has been minted. First, let's import the `Toaster` and `toast` functions from the toast library.
 
-```js
-import toast, { Toaster } from "react-hot-toast";
-```
+<Code code={`import toast, { Toaster } from "react-hot-toast";`}>
+  <CodeHeader copyButton>js</CodeHeader>
+  <CodeBlock lang="js" />
+</Code>
 
 Now we can create simple function that toasts the user saying "Minting Successful":
 
-```jsx
-const confirm = () =>
+<Code code={`const confirm = () =>
   toast.success("Minting Successful", {
     style: {
       background: "#04111d",
       color: "#fff",
     },
-  });
-```
+  });`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Then we can add a `.then()` method to our promise in the minting function to call the `confirm` function:
 
-```jsx
-const mint = async () =>
+<Code code={`const mint = async () =>
   await fetch("/api/mint", {
     method: "POST",
     headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify({ address }),
-  }).then(() => confirm());
-```
+  }).then(() => confirm());`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Finally, we can add the actual toaster itself right above the minting button:
 
-```jsx
-<Toaster position="top-center" reverseOrder={false} />
-```
+<Code code={`<Toaster position="top-center" reverseOrder={false} />`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 ## Conclusion
 
