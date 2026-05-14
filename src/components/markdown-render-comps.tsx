@@ -1,5 +1,5 @@
 import { formatDate, formatDateToAgo } from "@/lib/utils";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 export function BackLink({
   className = "",

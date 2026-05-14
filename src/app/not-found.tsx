@@ -1,31 +1,31 @@
 import { Footer } from "@/components/footer";
-import { NavMenu } from "@/components/nav-menu";
-import { Sidebar } from "@/components/sidebar";
-import { Link, ViewTransitions } from "next-view-transitions";
-
-export const metadata = {
-  title: "Not Found",
-};
+import { Header } from "@/components/header";
+import { Button } from "@/components/ui/button";
+import { PrimaryLayout } from "@/layouts/primary";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <ViewTransitions>
-      <NavMenu />
-      <div className="mx-auto flex min-h-screen w-full max-w-4xl gap-12 px-8">
-        <Sidebar />
-
-        <div className="flex h-min w-full flex-col gap-16 overflow-visible py-8 md:gap-24 md:py-20">
-          <div className="flex h-full flex-col gap-4">
-            <h1>Woah, this doesn&apos;t exist.</h1>
-            <p>
-              It looks I don&apos;t have what you&apos;re looking for. Sorry!
+    <PrimaryLayout>
+      <Header />
+      <main className="flex flex-1 items-center py-16">
+        <section className="flex max-w-lg flex-col gap-5">
+          <p className="text-sm font-medium text-muted-foreground">404</p>
+          <div className="flex flex-col gap-3">
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              This page drifted out of orbit.
+            </h1>
+            <p className="text-base leading-7 text-muted-foreground">
+              The page you are looking for does not exist, or it moved during
+              the redesign.
             </p>
-            <Link href="/">Go Back Home</Link>
           </div>
-
-          <Footer />
-        </div>
-      </div>
-    </ViewTransitions>
+          <Button asChild className="w-fit">
+            <Link href="/">Back home</Link>
+          </Button>
+        </section>
+      </main>
+      <Footer />
+    </PrimaryLayout>
   );
 }

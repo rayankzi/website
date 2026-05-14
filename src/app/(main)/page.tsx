@@ -1,9 +1,19 @@
-import { getMDXMetadata } from "@/app/(main)/actions";
-import HomeClient from "./home-client";
+import { ContactSection } from "@/components/contact-section";
+import { IntroSection } from "@/components/intro-section";
+import { ProfileTabs } from "@/components/profile-tabs";
+import { SkillsSection } from "@/components/skills-section";
 
-export default async function Home() {
-  const blogPosts = await getMDXMetadata("blog");
-  const projects = await getMDXMetadata("projects");
+export const metadata = {
+  title: "Home",
+};
 
-  return <HomeClient blogPosts={blogPosts} projects={projects} />;
+export default function HomePage() {
+  return (
+    <>
+      <IntroSection />
+      <SkillsSection />
+      <ProfileTabs />
+      <ContactSection />
+    </>
+  );
 }

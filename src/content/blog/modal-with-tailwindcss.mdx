@@ -11,28 +11,29 @@ Hello, everyone. Creating and using modals is very important in many web applica
 
 Create a new Next JS app with Tailwind CSS:
 
-```bash
-# npm
+<Code code={`# npm
 npx create-next-app --example with-tailwindcss with-tailwindcss-app
 
 # Yarn
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+yarn create next-app --example with-tailwindcss with-tailwindcss-app`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 After that, install all the dependencies we will use:
 
-```bash
-# npm
+<Code code={`# npm
 npm i @headlessui/react
 
 # Yarn
-yarn add @headlessui/react
-```
+yarn add @headlessui/react`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 Then inside our app, you can delete everything inside of `index.js` and add the following:
 
-```jsx
-const HomePage = () => {
+<Code code={`const HomePage = () => {
   return (
     <div>
       <Head>
@@ -43,8 +44,10 @@ const HomePage = () => {
       <Modal />
     </div>
   );
-};
-```
+};`}>
+  <CodeHeader copyButton>index.js</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 ## Building the Modal
 
@@ -52,69 +55,75 @@ const HomePage = () => {
 
 The first thing we should do is create a directory called `components` and create a new component for our modal. It would be best to name it `Modal.js`. Then inside the file create a new React functional component and export it (preferable use a [snippets extension](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets]).
 
-```jsx
-const Modal = () => {
+<Code code={`const Modal = () => {
   return <div>The Modal is Here!</div>;
 };
 
-export default Modal;
-```
+export default Modal;`}>
+  <CodeHeader copyButton>components/Modal.js</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Now we can render it in our `index.js` file:
 
-```jsx
-<div>
+<Code code={`<div>
   {/* Head Component things */}
 
   <Modal />
-</div>
-```
+</div>`}>
+  <CodeHeader copyButton>index.js</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 ### Using the `Dialog` Component
 
 Dialogs, a pre-built component that comes from Headless UI, will be the main tool we will use to build our modal. Dialogs are built using the `Dialog`, `Dialog.Overlay`, `Dialog.Title`, and `Dialog.Description` components. We first should build some state to track whether our Dialog is open or closed.
 
-```jsx
-const [open, setOpen] = useState(false);
-```
+<Code code={`const [open, setOpen] = useState(false);`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Now lets create the `Dialog` component. The component has an `open` prop, which will track whether to render the `Dialog` contents onto the page or not. It has an `onClose` prop, which will run a function when the user clicks out of the modal. It also has a `as` prop, which will tell Next JS how to render the component (i.e. a div tag, a main tag, etc.).
 
 In our case, the `open` state will manage the `open` prop, and we will render our modal as a `div`. We will simply set the `open` state to false when we click out of it.
 
-```jsx
-<Dialog open={open} onClose={() => setOpen(false)}></Dialog>
-```
+<Code code={`<Dialog open={open} onClose={() => setOpen(false)}></Dialog>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Modals are typically rendered on top of a transparent background. The `Dialog.Overlay` component can be used and styled to achieve the specific look.
 
-```jsx
-<Dialog open={open} onClose={() => setOpen(false)}>
+<Code code={`<Dialog open={open} onClose={() => setOpen(false)}>
   <Dialog.Overlay className="fixed inset-0" />
-</Dialog>
-```
+</Dialog>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 The `Dialog.Title` and `Dialog.Description` components are there to add accessibility to your modal (to make it more visible). They are automatically linked to the root `Dialog` component through the `aria-labelledby` and `aria-describedby` attributes, which will be annonuced to users that are using screen readers.
 
-```jsx
-<Dialog.Title>Update Sucessful</Dialog.Title>
+<Code code={`<Dialog.Title>Update Sucessful</Dialog.Title>
 <Dialog.Description>
   Profile updated successfully ✅
-</Dialog.Description>
-```
+</Dialog.Description>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Now there really isn't anything special behind styling the modal; just use the styles you want to use. Usually modals will be centered on the screen and have a maximum width constraint. Here is a `span` tag you will use to trick the browser into centering the modal contents onto the screen:
 
-```jsx
-<span className="inline-block h-screen align-middle" aria-hidden="true">
+<Code code={`<span className="inline-block h-screen align-middle" aria-hidden="true">
   &#8203;
-</span>
-```
+</span>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Now I used and tweaked some styles from the documentation to create the following modal that you would probably use when updating some info:
 
-```jsx
-<Dialog
+<Code code={`<Dialog
   as="div"
   className="fixed inset-0 z-10 overflow-y-auto"
   onClose={() => setOpen(false)}
@@ -150,8 +159,10 @@ Now I used and tweaked some styles from the documentation to create the followin
       </div>
     </div>
   </div>
-</Dialog>
-```
+</Dialog>`}>
+  <CodeHeader copyButton>components/Modal.js</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 The modal should look like this:
 
@@ -159,8 +170,7 @@ The modal should look like this:
 
 Now you should also have a button that you can use to open and close the modal (you can also close the modal by clicking outside of the screen). When you click it, you can set the `open` state to true.
 
-```jsx
-<div className="fixed inset-0 flex items-center justify-center">
+<Code code={`<div className="fixed inset-0 flex items-center justify-center">
   <a
     onClick={() => setOpen(true)}
     className="inline-block cursor-pointer rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
@@ -169,8 +179,10 @@ Now you should also have a button that you can use to open and close the modal (
       Open Modal
     </span>
   </a>
-</div>
-```
+</div>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Here is how the modal button should look:
 
@@ -180,8 +192,7 @@ Here is how the modal button should look:
 
 You can use the `Transition` component, that coincidentially also comes from Headless UI, to animate the opening and closing animations of the modal. First, you need to wrap the `Dialog` component in a `Transition` component. The `show` prop is basically the open state.
 
-```jsx
-<Transition
+<Code code={`<Transition
   show={open}
   enter="transition duration-100 ease-out"
   enterFrom="transform scale-95 opacity-0"
@@ -201,15 +212,16 @@ You can use the `Transition` component, that coincidentially also comes from Hea
       {/* ... */}
     </div>
   </Dialog>
-</Transition>
-```
+</Transition>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 The styles that are used in the `Transition` component usually stay the same, but you can change them as you please. The `enterFrom` and `leaveTo` props are the same, and the `enterTo` and `leaveFrom` props are the same.
 
 Next, wrap each section of content you want to animate in a `Transition.Child` component (ideally the overlay and the content `div`).
 
-```jsx
-<Transition.Child
+<Code code={`<Transition.Child
   as={Fragment}
   enter="ease-out duration-300"
   enterFrom="opacity-0"
@@ -233,8 +245,10 @@ Next, wrap each section of content you want to animate in a `Transition.Child` c
   <div className="my-8 inline-block w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
     {/* ... */}
   </div>
-</Transition.Child>
-```
+</Transition.Child>`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 I think we've made a pretty fire modal if I do say so myself 🔥😁
 

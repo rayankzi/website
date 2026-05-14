@@ -9,9 +9,10 @@ Next JS has proven to be an awesome React framework that many developers now use
 
 The best way to get started with Next JS and TypeScript is by using the `ts` flag when creating the project.
 
-```bash
-npx create-next-app nextjs-typescript-demo --ts
-```
+<Code code={`npx create-next-app nextjs-typescript-demo --ts`}>
+  <CodeHeader copyButton>bash</CodeHeader>
+  <CodeBlock lang="bash" />
+</Code>
 
 ## Using Next JS's types
 
@@ -21,8 +22,7 @@ When you open up the `index.tsx` file, one of the things that has changed is tha
 
 If you want to do server side rendering or static generation, Next JS has built in types for those as well:
 
-```ts
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+<Code code={`import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   return {
@@ -45,29 +45,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {},
   };
-};
-```
+};`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Click [here](https://nextjs.org/docs/api-reference/data-fetching/get-initial-props#typescript) if you want to learn about how to use `getInitalProps` with TypeScript.
 
 For the props or paths being returned, you can use angle brackets in the `NextPage` type (because the type is generic) to specify the prop/path types.
 
-```ts
-interface Props {
+<Code code={`interface Props {
   // ...
 }
 
 const Home: NextPage<Props> = () => {
   return <div>Hello World</div>;
-};
-```
+};`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 ### Components
 
 To build components that will be used inside of your app, you should use the `NextComponent` type. By default the component will be typed as `NextComponent<NextPageContext, {}, {}>` The third argument can be extended to type check your props:
 
-```ts
-import { NextComponentType, NextPageContext } from "next";
+<Code code={`import { NextComponentType, NextPageContext } from "next";
 
 interface Props {
   // ...
@@ -75,25 +77,27 @@ interface Props {
 
 const Dummy: NextComponentType<NextPageContext, {}, Props> = () => {
   return <div></div>;
-};
-```
+};`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 ### API Routes
 
 You can also type check your API routes by using Next.js's built in types.
 
-```ts
-import type { NextApiRequest, NextApiResponse } from "next";
+<Code code={`import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({ response: "Type checked API response" });
-}
-```
+}`}>
+  <CodeHeader copyButton>pages/api/handler.ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 You can type the repsonse data and pass it into `NextApiResponse`:
 
-```ts
-type Data = {
+<Code code={`type Data = {
   response: string;
 };
 
@@ -102,8 +106,10 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   res.status(200).json({ response: "Type checked API response" });
-}
-```
+}`}>
+  <CodeHeader copyButton>pages/api/handler.ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 ### Custom App and Next Config
 
@@ -113,14 +119,14 @@ The `_app.js` and `next.config.js` files are also typed using the built in types
 
 Lets fetch the JSON Placeholder API to get some posts and test our type checking skills. First in the `index.tsx` file, we will need to use the `getStaticProps` (because the API data doesnt't change) to get the data.
 
-```ts
-export const getStaticProps: GetStaticProps = async () => {};
-```
+<Code code={`export const getStaticProps: GetStaticProps = async () => {};`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Now we will need query the API and return the results:
 
-```ts
-export const getStaticProps: GetStaticProps = async () => {
+<Code code={`export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts = await res.json();
 
@@ -129,44 +135,48 @@ export const getStaticProps: GetStaticProps = async () => {
       posts,
     },
   };
-};
-```
+};`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Now we have a problem. When you hover over the posts variable (in VSCode), it will say that the type is `any`. That is not what we want; the purpose of TypeScript is to make sure everything is statically typed.
 
 One way to type the API results is go to thw API documentation and figure it out from there. The better way is to fetch the API and paste the results into [Quicktype](https://app.quicktype.io/). Quicktype will automatically generate types and interfaces for the data. I have already done that, and the API response will be in the following format:
 
-```ts
-export default interface PostType {
+<Code code={`export default interface PostType {
   userId: number;
   id: number;
   title: string;
   body: string;
-}
-```
+}`}>
+  <CodeHeader copyButton>types/PostType.ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Usually, we would create a types folder, create a new file (maybe called `PostType.ts`) and export the interface.
 
 Now we will receive an array of posts. We can now type check the posts variable:
 
-```ts
-const posts: PostType[] = await res.json();
-```
+<Code code={`const posts: PostType[] = await res.json();`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Now to receive the posts in the actual page, we need to extend the `NextPage` type to include our props. Then we can use the posts.
 
-```ts
-type HomeProps = {
+<Code code={`type HomeProps = {
   posts: PostType[];
 };
 
-const Home: NextPage<HomeProps> = ({ posts }) => {};
-```
+const Home: NextPage<HomeProps> = ({ posts }) => {};`}>
+  <CodeHeader copyButton>ts</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Now we can map through the posts and display them on the page using a `Post` component.
 
-```jsx
-posts.map((post) => (
+<Code code={`posts.map((post) => (
   <Post
     key={post.id}
     userId={post.userId}
@@ -174,13 +184,14 @@ posts.map((post) => (
     title={post.title}
     body={post.body}
   />
-));
-```
+));`}>
+  <CodeHeader copyButton>jsx</CodeHeader>
+  <CodeBlock lang="jsx" />
+</Code>
 
 Now when we create the `Post` component, we have to keep in mind the props we have to pass in. You can use the `PostType` interface for the props, but I will create a separate type for the `Post` props. Then we can use the `NextComponentType` type to type check the props.
 
-```ts
-type PostProps = {
+<Code code={`type PostProps = {
   userId: number;
   id: number;
   title: string;
@@ -192,20 +203,23 @@ const Post: NextComponentType<NextPageContext, {}, PostProps> = ({
   id,
   title,
   body,
-}) => {};
-```
+}) => {};`}>
+  <CodeHeader copyButton>components/Post.tsx</CodeHeader>
+  <CodeBlock lang="ts" />
+</Code>
 
 Now we can just display all the information:
 
-```html
-<div>
+<Code code={`<div>
   <p>User ID: {userId}</p>
   <p>ID: {id}</p>
   <p>Title: {title}</p>
   <p>Body: {body}</p>
   <br />
-</div>
-```
+</div>`}>
+  <CodeHeader copyButton>html</CodeHeader>
+  <CodeBlock lang="html" />
+</Code>
 
 ## Conclusion
 
