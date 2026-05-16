@@ -203,7 +203,7 @@ p {
 /* Code block styles with sugar-high */
 pre {
   background-color: oklch(0.985 0 0);
-  border: 1px solid var(--border);
+  /* border: 1px solid var(--border); */
   border-radius: 0.5rem;
   color: var(--foreground);
   overflow-x: auto;
