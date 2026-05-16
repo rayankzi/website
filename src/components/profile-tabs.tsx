@@ -18,7 +18,13 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/animate-ui/components/radix/tabs";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/animate-ui/components/radix/tooltip";
 import { education, workExperience } from "@/lib/data";
+import { HighlightText } from "./animate-ui/primitives/texts/highlight";
 
 export function ProfileTabs() {
   return (
@@ -41,7 +47,26 @@ export function ProfileTabs() {
           {education.map((item) => (
             <Card key={`${item.degree}-${item.year}`} className="rounded-lg">
               <CardHeader>
-                <CardTitle className="text-xl">{item.degree}</CardTitle>
+                <CardTitle className="text-xl">
+                  {item.degree}{" "}
+                  {item.highlighted && (
+                    <>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <HighlightText
+                            text={item.highlighted.text}
+                            className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 dark:from-pink-600 dark:via-purple-600 dark:to-indigo-500"
+                          />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="text-white dark:text-black">
+                            Tooltip content
+                          </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </>
+                  )}
+                </CardTitle>
                 <CardDescription>
                   {item.year} · {item.university}
                 </CardDescription>

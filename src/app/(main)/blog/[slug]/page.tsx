@@ -124,22 +124,29 @@ export default async function BlogPostPage({
             You might also like
           </h2>
           <div className="flex flex-col">
-            {relatedPosts.map((post) => (
-              <Link
-                key={post.href}
-                href={post.href}
-                className="group -mx-3 flex rounded-md border border-transparent px-3 py-4 transition-all duration-300 hover:border-border hover:bg-accent/40 hover:px-5"
-              >
-                <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <h3 className="font-medium text-foreground transition-colors duration-300 group-hover:text-muted-foreground">
-                    {post.title}
-                  </h3>
-                  <span className="text-sm text-muted-foreground">
-                    {formatDate(post.date)}
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {relatedPosts.map((post) => {
+              const relatedSlug = post.href.split("/").pop();
+              return (
+                <Link
+                  key={post.href}
+                  href={post.href}
+                  className="group -mx-3 flex rounded-md border border-transparent px-3 py-4 transition-all duration-300 hover:border-border hover:bg-accent/40 hover:px-5"
+                >
+                  <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <ViewTransition name={`blog-title-${relatedSlug}`} share="morph">
+                      <h3 className="font-medium text-foreground transition-colors duration-300 group-hover:text-muted-foreground">
+                        {post.title}
+                      </h3>
+                    </ViewTransition>
+                    <ViewTransition name={`blog-meta-${relatedSlug}`} share="morph">
+                      <span className="text-sm text-muted-foreground">
+                        {formatDate(post.date)}
+                      </span>
+                    </ViewTransition>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
         </ViewTransition>

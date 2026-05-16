@@ -96,8 +96,12 @@ export const education = [
   {
     year: "2029",
     degree: "Bachelor of Science, Computer Science",
-    university: "Barrett, the Honors College, Arizona State University",
-    // status: "Graduated",
+    university: "Arizona State University",
+    highlighted: {
+      text: "Honors",
+      description: "Barrett, the Honors College",
+    },
+    highlightedText: "Honors",
     description: [
       "Concentration: Software Engineering",
       "Relevant Coursework: Object Oriented Programming in Java, Computing in C/C++",
