@@ -101,9 +101,8 @@ export const education = [
       text: "Honors",
       description: "Barrett, the Honors College",
     },
-    highlightedText: "Honors",
     description: [
-      "Concentration: Software Engineering",
+      "Concentration: Artificial Intelligence",
       "Relevant Coursework: Object Oriented Programming in Java, Computing in C/C++",
     ],
   },

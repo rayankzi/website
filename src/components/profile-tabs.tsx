@@ -58,9 +58,9 @@ export function ProfileTabs() {
                             className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 dark:from-pink-600 dark:via-purple-600 dark:to-indigo-500"
                           />
                         </TooltipTrigger>
-                        <TooltipContent>
+                        <TooltipContent className="text-white dark:text-black">
                           <p className="text-white dark:text-black">
-                            Tooltip content
+                            {item.highlighted.description}
                           </p>
                         </TooltipContent>
                       </Tooltip>
