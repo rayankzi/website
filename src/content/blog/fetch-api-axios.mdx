@@ -9,20 +9,22 @@ Fetching an API is a must-know for web developers in 2022 and beyond. In this ar
 
 Create a new React app using Vite (pronounced like "veet"):
 
-<Code code={`npm create vite@latest axios-demo -- --template react # npm
-yarn create vite axios-demo --template react # yarn`}>
+<Code>
   <CodeHeader copyButton>bash</CodeHeader>
   <CodeBlock lang="bash" />
+  <CodeBody>{`npm create vite@latest axios-demo -- --template react # npm
+  yarn create vite axios-demo --template react # yarn`}</CodeBody>
 </Code>
 
 If you want to use TypeScript (we'll talk about TypeScript specific things later), use the template `react-ts` instead of `react`.
 
 Now install axios:
 
-<Code code={`npm i axios # npm
-yarn add axios # yarn`}>
+<Code>
   <CodeHeader copyButton>bash</CodeHeader>
   <CodeBlock lang="bash" />
+  <CodeBody>{`npm i axios # npm
+  yarn add axios # yarn`}</CodeBody>
 </Code>
 
 ## Using Axios
@@ -33,55 +35,60 @@ Axios is a promised based library, so you should know how to use promises and as
 
 The easiest way of fetching data from an API is just using the `get` method (for a GET request).
 
-<Code code={`import axios from "axios";
-
-axios.get("https://jsonplaceholder.typicode.com/todos");`}>
+<Code>
   <CodeHeader copyButton>js</CodeHeader>
   <CodeBlock lang="js" />
+  <CodeBody>{`import axios from "axios";
+  
+  axios.get("https://jsonplaceholder.typicode.com/todos");`}</CodeBody>
 </Code>
 
 This method returns a promise that contains the response data. The response contains properties like the status and headers. To get the JSON data, you need the `data` property.
 
-<Code code={`axios.get("https://jsonplaceholder.typicode.com/todos").then((res) => {
-  console.log(res.status);
-  console.log(res.headers);
-  return res.data;
-});`}>
+<Code>
   <CodeHeader copyButton>js</CodeHeader>
   <CodeBlock lang="js" />
+  <CodeBody>{`axios.get("https://jsonplaceholder.typicode.com/todos").then((res) => {
+    console.log(res.status);
+    console.log(res.headers);
+    return res.data;
+  });`}</CodeBody>
 </Code>
 
 The return statement returns the data property from our response that contains all the data. We can then chain another `.then` to log the data to the console.
 
-<Code code={`axios
-  .get("https://jsonplaceholder.typicode.com/todos")
-  .then((res) => res.data)
-  .then((data) => console.log(data));`}>
+<Code>
   <CodeHeader copyButton>js</CodeHeader>
   <CodeBlock lang="js" />
+  <CodeBody>{`axios
+    .get("https://jsonplaceholder.typicode.com/todos")
+    .then((res) => res.data)
+    .then((data) => console.log(data));`}</CodeBody>
 </Code>
 
 ### Posting Data
 
 To send a POST request to an API, you can use the `post` method on the axios object. It takes the URL, the data you are posting, and a configuration object.
 
-<Code code={`axios.post("<url>", data, {
-  // config ...
-});`}>
+<Code>
   <CodeHeader copyButton>js</CodeHeader>
   <CodeBlock lang="js" />
+  <CodeBody>{`axios.post("<url>", data, {
+    // config ...
+  });`}</CodeBody>
 </Code>
 
 The most common type of configuration you may need to send with your POST request is the request headers. This is usually needed for authentication.
 
-<Code code={`axios.post("<url>", data, {
-  headers: {
-    api_key: "YOUR_API_KEY_HERE",
-    // other headers ...
-  },
-});`}>
+<Code>
   <CodeHeader copyButton>js</CodeHeader>
   <CodeBlock lang="js" />
+  <CodeBody>{`axios.post("<url>", data, {
+    headers: {
+      api_key: "YOUR_API_KEY_HERE",
+      // other headers ...
+    },
+  });`}</CodeBody>
 </Code>
 
 Now that you have a general idea on how to use Axios for some basic API requests, let's actually use the JSON placeholder API and display some data on the screen. If you want to learn more about Axios, head over to their documentation [here](https://axios-http.com/docs/intro).
@@ -90,29 +97,32 @@ Now that you have a general idea on how to use Axios for some basic API requests
 
 First, we need some state to track all of the todos we have (the API response).
 
-<Code code={`const [todos, setTodos] = useState([]);`}>
+<Code>
   <CodeHeader copyButton>js</CodeHeader>
   <CodeBlock lang="js" />
+  <CodeBody>{`const [todos, setTodos] = useState([]);`}</CodeBody>
 </Code>
 
 Now we would create an asynchronous function that would fetch the data and then set the todos to the data.
 
-<Code code={`const fetchData = async () => {
-  await axios
-    .get("https://jsonplaceholder.typicode.com/todos")
-    .then((res) => setTodos(res.data));
-};`}>
+<Code>
   <CodeHeader copyButton>js</CodeHeader>
   <CodeBlock lang="js" />
+  <CodeBody>{`const fetchData = async () => {
+    await axios
+      .get("https://jsonplaceholder.typicode.com/todos")
+      .then((res) => setTodos(res.data));
+  };`}</CodeBody>
 </Code>
 
 Finally, we would use a `useEffect` to call the function every time the page reloads.
 
-<Code code={`useEffect(() => {
-  fetchData();
-}, []);`}>
+<Code>
   <CodeHeader copyButton>js</CodeHeader>
   <CodeBlock lang="js" />
+  <CodeBody>{`useEffect(() => {
+    fetchData();
+  }, []);`}</CodeBody>
 </Code>
 
 ## Typing the Data
@@ -123,30 +133,33 @@ If you are using a TypeScript workflow, it would be a great idea to create types
 
 Here are the types for the todos (I got them using QuickType with a couple edits)
 
-<Code code={`export interface Todo {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`export interface Todo {
+    userId: number;
+    id: number;
+    title: string;
+    completed: boolean;
+  }`}</CodeBody>
 </Code>
 
 Now we can add types to our state:
 
-<Code code={`const [todos, setTodos] = useState<Todo[]>([]);`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`const [todos, setTodos] = useState<Todo[]>([]);`}</CodeBody>
 </Code>
 
 And we can also convert our response data to the type `Todo[]` when we set the todos:
 
-<Code code={`await axios
-  .get("https://jsonplaceholder.typicode.com/todos")
-  .then((res) => setTodos(res.data as Todo[]));`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`await axios
+    .get("https://jsonplaceholder.typicode.com/todos")
+    .then((res) => setTodos(res.data as Todo[]));`}</CodeBody>
 </Code>
 
 Now we our data is strictly typed. Let's display some of the it on the browser now!
@@ -155,20 +168,22 @@ Now we our data is strictly typed. Let's display some of the it on the browser n
 
 Displaying the data is actually quite simple. All we need to do is map through the array and display the elements in the fashion we want. I will just simply display all of them using an unordered list:
 
-<Code code={`{
-  todos.map((todo) => <li>{todo.title}</li>);
-}`}>
+<Code>
   <CodeHeader copyButton>jsx</CodeHeader>
   <CodeBlock lang="jsx" />
+  <CodeBody>{`{
+    todos.map((todo) => <li>{todo.title}</li>);
+  }`}</CodeBody>
 </Code>
 
 Go to [this](https://gist.github.com/rkazi103/99888daf59ff47b96dc7788d89fcc2de) Github gist to get the CSS I am using to style the list (it isn't great, but it'll do for now).
 
 Because the todos automatically come with a `completed` field, we can added a "checked" class to the todos that are completed:
 
-<Code code={`<li className={todo.completed ? "checked" : ""}>{todo.title}</li>`}>
+<Code>
   <CodeHeader copyButton>jsx</CodeHeader>
   <CodeBlock lang="jsx" />
+  <CodeBody>{`<li className={todo.completed ? "checked" : ""}>{todo.title}</li>`}</CodeBody>
 </Code>
 
 You should get this now:

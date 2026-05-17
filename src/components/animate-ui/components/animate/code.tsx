@@ -13,26 +13,43 @@ import { getStrictContext } from "@/lib/get-strict-context";
 
 type CodeContextType = {
   code: string;
+  setCode: (code: string) => void;
 };
 
 const [CodeProvider, useCode] =
   getStrictContext<CodeContextType>("CodeContext");
 
-type CodeProps = React.ComponentProps<"div"> & {
-  code: string;
+type CodeProps = React.ComponentProps<"div">;
+
+type CodeBodyProps = {
+  children: string;
 };
 
-function Code({ className, code, ...props }: CodeProps) {
+function CodeBody({ children }: CodeBodyProps): null {
+  const { setCode } = useCode();
+
+  React.useEffect(() => {
+    setCode(children);
+  }, [children, setCode]);
+
+  return null;
+}
+
+function Code({ className, children, ...props }: CodeProps) {
+  const [code, setCode] = React.useState("");
+
   return (
     <div className="pb-4">
-      <CodeProvider value={{ code }}>
+      <CodeProvider value={{ code, setCode }}>
         <div
           className={cn(
             "relative flex flex-col overflow-hidden border bg-accent/50 rounded-lg",
             className,
           )}
           {...props}
-        />
+        >
+          {children}
+        </div>
       </CodeProvider>
     </div>
   );
@@ -103,9 +120,11 @@ function CodeBlock({ cursor, className, ...props }: CodeBlockProps) {
 
 export {
   Code,
+  CodeBody,
   CodeHeader,
   CodeBlock,
   type CodeProps,
+  type CodeBodyProps,
   type CodeHeaderProps,
   type CodeBlockProps,
 };

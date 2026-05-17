@@ -7,16 +7,17 @@ TypeScript has arguably been the greatest thing that I have ever come across as 
 
 I will be using the following interface throughout the article to demonstrate the various types:
 
-<Code code={`export interface Book {
-  name: string;
-  author: string;
-  datePublished: Date;
-  price: number;
-  numSales?: number;
-  seriesName?: string;
-}`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`export interface Book {
+    name: string;
+    author: string;
+    datePublished: Date;
+    price: number;
+    numSales?: number;
+    seriesName?: string;
+  }`}</CodeBody>
 </Code>
 
 ## Omit and Pick
@@ -25,16 +26,18 @@ The `Omit` type allows you to "omit" (i.e. remove) certain properties from an in
 
 For example, if you want to make a `BookProfile` type, which just has all the properties of the book needed to identify itself, you would use the `Omit` as follows:
 
-<Code code={`type BookInfo = Omit<Book, "price" | "numSales">;`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type BookInfo = Omit<Book, "price" | "numSales">;`}</CodeBody>
 </Code>
 
 This type would be equivalent to our `Book` interface except it wouldn't have the `price` or `numSales` properties. You can also create it with the interface keyword as follows:
 
-<Code code={`interface IBookInfo extends Omit<Book, "price" | "numSales"> {}`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`interface IBookInfo extends Omit<Book, "price" | "numSales"> {}`}</CodeBody>
 </Code>
 
 The `IBookInfo` interface would work the same way the `BookInfo` type would, but I personally prefer using the type version due to its cleaner implementation.
@@ -43,9 +46,10 @@ The `Pick` type has quite literally the opposite function of the `Omit` type; th
 
 If we were to make the `BookInfo` type using the `Pick` type, here is how it would look:
 
-<Code code={`type BookInfo = Pick<Book, "name" | "author" | "datePublished" | "seriesName">;`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type BookInfo = Pick<Book, "name" | "author" | "datePublished" | "seriesName">;`}</CodeBody>
 </Code>
 
 Because these 2 types are so similar, an important question arises. "In which cases should I use `Omit` or `Pick`?" I think it actually comes down to personal preference.
@@ -62,117 +66,129 @@ In our `Book` interface, there are 4 required properties and 2 optional properti
 
 The `Partial` type will make all the properties on the interface passed in optional; this means that all 6 properties on the `Book` interface would become required.
 
-<Code code={`type BookPartial = Partial<Book>;`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type BookPartial = Partial<Book>;`}</CodeBody>
 </Code>
 
 The `Required` type does the exact opposite of what `Partial` does; it makes all the properties on the interface passed in required. This would make all 6 properties on `Book` required.
 
-<Code code={`type BookRequired = Required<Book>;`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type BookRequired = Required<Book>;`}</CodeBody>
 </Code>
 
 These types are usually extended to include some exceptions. For example, we could make the `name` property required on the `BookPartial` type by extending it as follows:
 
-<Code code={`type BookPartial = Partial<Book> & { name: string };`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type BookPartial = Partial<Book> & { name: string };`}</CodeBody>
 </Code>
 
 ## Record
 
 The `Record` type allows you to create an object where you can define the key and the type. Lets say we had the following object below:
 
-<Code code={`const myObj = {
-  a: 1,
-  b: 2,
-};`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`const myObj = {
+    a: 1,
+    b: 2,
+  };`}</CodeBody>
 </Code>
 
 This object follows a strict pattern where every key is a string and every value is a number. We can type this object using the `Record` type as follows:
 
-<Code code={`const myObj: Record<string, number> = {
-  a: 1,
-  b: 2,
-};`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`const myObj: Record<string, number> = {
+    a: 1,
+    b: 2,
+  };`}</CodeBody>
 </Code>
 
 All the `Record` type does is say what the types are for the key-value pair of an object. If you want to represent a shelf with different books (with the `Book` interface), you can now easily do that with `Record` as follows:
 
-<Code code={`const shelf: Record<number, Book> = {
-  0: {
-    name: "Into Thin Air",
-    author: "Jon Krakauer",
-    datePublished: new Date(1997, 1),
-    price: 14,
-  },
-  1: {
-    name: "1984",
-    author: "George Orwell",
-    datePublished: new Date(1949, 6),
-    price: 12,
-  },
-};`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`const shelf: Record<number, Book> = {
+    0: {
+      name: "Into Thin Air",
+      author: "Jon Krakauer",
+      datePublished: new Date(1997, 1),
+      price: 14,
+    },
+    1: {
+      name: "1984",
+      author: "George Orwell",
+      datePublished: new Date(1949, 6),
+      price: 12,
+    },
+  };`}</CodeBody>
 </Code>
 
 ## Parameters and ReturnType
 
 The `Parameters` type creates an array type based on a function's arguments. For example, let's say we had the following function:
 
-<Code code={`function createPost(caption: string, image?: string) {
-  return { caption, image };
-}`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`function createPost(caption: string, image?: string) {
+    return { caption, image };
+  }`}</CodeBody>
 </Code>
 
 If you wanted to create a type that contained all the arguments of `createPost`, you would do it as follows:
 
-<Code code={`type CreatePostInput = Parameters<typeof createPost>;`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type CreatePostInput = Parameters<typeof createPost>;`}</CodeBody>
 </Code>
 
 Here is how the type would be used in action:
 
-<Code code={`const post: CreatePostInput = ["Nice", "https://bit.ly/3OOiIaC"];
-createPost(...post);`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`const post: CreatePostInput = ["Nice", "https://bit.ly/3OOiIaC"];
+  createPost(...post);`}</CodeBody>
 </Code>
 
 The reason why you have to use the spread operator with the `post` array is because the elements of the array correspond to the various arguments of the function; the array itself isn't a function argument.
 
 The `ReturnType` creates a type based on what a function returns. The syntax is very similar to that of `Parameters`:
 
-<Code code={`type CreatePostReturn = ReturnType<typeof createPost>;`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type CreatePostReturn = ReturnType<typeof createPost>;`}</CodeBody>
 </Code>
 
 This is equivalent to:
 
-<Code code={`type CreatePostReturn = {
-  caption: string;
-  image: string | undefined;
-};`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type CreatePostReturn = {
+    caption: string;
+    image: string | undefined;
+  };`}</CodeBody>
 </Code>
 
 If a function returns a promise, you can wrap the `ReturnType` around the `Awaited` utility type, which will effectively do the same thing the `await` keyword does. It will allow you to have access to the object's (that is wrapped in the Promise) properties again.
 
-<Code code={`type CreatePostReturn = Awaited<ReturnType<typeof createPost>>;`}>
+<Code>
   <CodeHeader copyButton>ts</CodeHeader>
   <CodeBlock lang="ts" />
+  <CodeBody>{`type CreatePostReturn = Awaited<ReturnType<typeof createPost>>;`}</CodeBody>
 </Code>
 
 ## Next Steps

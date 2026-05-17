@@ -3,6 +3,7 @@ import Link from "next/link";
 import { highlight } from "sugar-high";
 import {
   Code,
+  CodeBody,
   CodeBlock,
   CodeHeader,
 } from "@/components/animate-ui/components/animate/code";
@@ -138,6 +139,7 @@ const components = {
     />
   ),
   Code,
+  CodeBody,
   CodeBlock,
   CodeHeader,
 };
