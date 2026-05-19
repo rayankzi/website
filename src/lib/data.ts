@@ -30,7 +30,7 @@ export const skills = [
 
 export const workExperience = [
   {
-    year: "April 2026 - Present",
+    year: "Apr 2026 - Present",
     role: "Undergraduate Researcher",
     company: "Arizona State University",
     longBullets: [
@@ -94,7 +94,7 @@ export const workExperience = [
 
 export const education = [
   {
-    year: "2029",
+    year: "2028",
     degree: "Bachelor of Science, Computer Science",
     university: "Arizona State University",
     highlighted: {
