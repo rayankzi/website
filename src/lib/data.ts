@@ -35,7 +35,7 @@ export const workExperience = [
     company: "Arizona State University",
     longBullets: [
       "Working with Dr. Hua Wei and Dr. Yi Zheng to implement ICAP framework on agentic AI framework for education",
-      "More comming soon ✌️",
+      "More coming soon ✌️",
     ],
   },
   {

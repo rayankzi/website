@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { ArrowUpRightIcon } from "lucide-react";
+
 import { UnderConstruction } from "@/components/under-construction";
 import {
   Accordion,
@@ -9,9 +12,11 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   Tabs,
   TabsContent,
@@ -86,7 +91,7 @@ export function ProfileTabs() {
           <Card className="rounded-lg">
             <CardContent className="-my-4">
               <Accordion type="single" collapsible className="w-full">
-                {workExperience.map((item) => (
+                {workExperience.slice(0, 3).map((item) => (
                   <AccordionItem
                     key={`${item.company}-${item.year}`}
                     value={`${item.company}-${item.year}`}
@@ -117,6 +122,14 @@ export function ProfileTabs() {
                 ))}
               </Accordion>
             </CardContent>
+            <CardFooter>
+              <Button asChild variant="ghost" className="w-full justify-between">
+                <Link href="/work1">
+                  See all work experience
+                  <ArrowUpRightIcon data-icon="inline-end" />
+                </Link>
+              </Button>
+            </CardFooter>
           </Card>
         </TabsContent>
 

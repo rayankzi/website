@@ -16,7 +16,7 @@ const oxanium = Oxanium({
 const navItems = [
   { href: "/blog", label: "blog" },
   { href: "/projects", label: "projects" },
-  { href: "/#contact", label: "contact" },
+  { href: "/work1", label: "work" },
 ];
 
 export function Header() {
@@ -31,6 +31,10 @@ export function Header() {
 
     if (href === "/projects") {
       return pathname === href || pathname.startsWith(`${href}/`);
+    }
+
+    if (href === "/work1") {
+      return pathname.startsWith("/work");
     }
 
     return false;

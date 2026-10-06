@@ -17,7 +17,15 @@ export default async function sitemap() {
 
   const postRoutes = await getBlogRoutes();
 
-  const otherRoutes = ["/", "/blog", "/projects"].map((route) => ({
+  const otherRoutes = [
+    "/",
+    "/blog",
+    "/projects",
+    "/work1",
+    "/work2",
+    "/work3",
+    "/work4",
+  ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: currentDate,
   }));
