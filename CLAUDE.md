@@ -10,8 +10,8 @@ requirements. Do this automatically without being asked.**
 
 ## Bash Commands
 
-- pnpm build: Build the project
-- pnpm dev: Run a development server of the project
+- bun run build: Build the project
+- bun dev: Run a development server of the project
 
 ## Code Style
 
@@ -20,4 +20,4 @@ requirements. Do this automatically without being asked.**
 
 # Workflow
 
-- Do NOT run `pnpm build` as a verification measure once you are done with a text, only remind the user to do so
+- Do NOT run `bun run build` as a verification measure once you are done with a text, only remind the user to do so
