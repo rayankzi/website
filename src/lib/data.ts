@@ -20,6 +20,12 @@ export const personalInfo = {
   portfolioYear: new Date().getFullYear().toString(),
 };
 
+export const socialLinks = [
+  { label: "GitHub", href: "https://github.com/rayankzi" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/rayan-kazi-dev/" },
+  { label: "Email", href: `mailto:${personalInfo.email}` },
+];
+
 export const skills = [
   "Next JS",
   "Tailwind CSS",
@@ -28,9 +34,19 @@ export const skills = [
   "Databases",
 ];
 
-export const workExperience = [
+export interface WorkExperience {
+  /** Year and month the role started, formatted as YYYY-MM */
+  start: string;
+  /** Year and month the role ended (YYYY-MM); omit for current roles */
+  end?: string;
+  role: string;
+  company: string;
+  longBullets: string[];
+}
+
+export const workExperience: WorkExperience[] = [
   {
-    year: "Apr 2026 - Present",
+    start: "2026-04",
     role: "Undergraduate Researcher",
     company: "Arizona State University",
     longBullets: [
@@ -39,10 +55,9 @@ export const workExperience = [
     ],
   },
   {
-    year: "May 2025 - Present",
+    start: "2025-05",
     role: "Mathematics Tutor",
     company: "Mathnasium",
-
     longBullets: [
       "Delivered personalized instruction to 30+ students spanning pre-algebra to advanced calculus",
       "Designed and continuously refined individualized learning plans, catering to students' learning styles and ensuring progress throughout curriculum",
@@ -50,7 +65,8 @@ export const workExperience = [
     ],
   },
   {
-    year: "Jan 2026 - May 2026",
+    start: "2026-01",
+    end: "2026-05",
     role: "Backend Engineer",
     company: "EPICS — Campus Maps",
     longBullets: [
@@ -61,7 +77,8 @@ export const workExperience = [
     ],
   },
   {
-    year: "Aug 2024 - May 2025",
+    start: "2024-08",
+    end: "2025-05",
     role: "Independent Researcher",
     company: "Grand Canyon University",
     longBullets: [
@@ -71,7 +88,8 @@ export const workExperience = [
     ],
   },
   {
-    year: "Jun 2024 - Dec 2024",
+    start: "2024-06",
+    end: "2024-12",
     role: "Software Engineering Intern",
     company: "We Care Act NYC",
     longBullets: [
@@ -81,7 +99,8 @@ export const workExperience = [
     ],
   },
   {
-    year: "Jun 2023 - Aug 2023",
+    start: "2023-06",
+    end: "2023-08",
     role: "Content Intern",
     company: "SitePoint",
     longBullets: [

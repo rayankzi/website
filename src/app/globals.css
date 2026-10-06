@@ -8,6 +8,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-newsreader);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -50,23 +51,23 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --background: oklch(0.986 0.003 85);
+  --foreground: oklch(0.2 0.006 60);
+  --card: oklch(0.995 0.002 85);
+  --card-foreground: oklch(0.2 0.006 60);
+  --popover: oklch(0.995 0.002 85);
+  --popover-foreground: oklch(0.2 0.006 60);
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.53 0.008 60);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: oklch(0.905 0.005 80);
+  --input: oklch(0.905 0.005 80);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -81,8 +82,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --low-contrast-text: oklch(0.667 0 0.899);
-  --high-contrast-text: oklch(0.145 0 0);
+  --low-contrast-text: oklch(0.38 0.007 60);
+  --high-contrast-text: oklch(0.2 0.006 60);
 
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
@@ -96,18 +97,18 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
+  --background: oklch(0.165 0.003 60);
+  --foreground: oklch(0.94 0.004 85);
+  --card: oklch(0.2 0.003 60);
+  --card-foreground: oklch(0.94 0.004 85);
+  --popover: oklch(0.2 0.003 60);
+  --popover-foreground: oklch(0.94 0.004 85);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground: oklch(0.66 0.006 70);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
@@ -127,8 +128,8 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --low-contrast-text: oklch(0.708 0 0);
-  --high-contrast-text: oklch(0.958 0.01 0.172);
+  --low-contrast-text: oklch(0.78 0.005 80);
+  --high-contrast-text: oklch(0.94 0.004 85);
 
   --sh-class: #7aa2f7;
   --sh-identifier: #c0caf5;
@@ -146,11 +147,46 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background font-serif text-foreground;
+  }
+  :focus-visible {
+    @apply outline-foreground;
+  }
+  ::selection {
+    @apply bg-foreground text-background;
+  }
+  p {
+    @apply text-low-contrast-text;
   }
 }
 
 @layer utilities {
+  /* Staggered entrance: set --enter-delay inline to offset each block */
+  .animate-enter {
+    animation: enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+
+  /* Quicker variant for swapping content in place */
+  .animate-swap {
+    animation: enter 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translateY(8px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-enter,
+    .animate-swap {
+      animation: none;
+    }
+  }
+
   .animate-fade-in-up {
     animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
@@ -196,9 +232,6 @@ h4 {
   text-wrap: balance;
 }
 
-p {
-  @apply text-low-contrast-text;
-}
 
 /* Code block styles with sugar-high */
 pre {
