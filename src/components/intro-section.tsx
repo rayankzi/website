@@ -1,57 +1,96 @@
 import Image from "next/image";
-import { Raleway } from "next/font/google";
 
-import { cn } from "@/lib/utils";
-import { personalInfo } from "@/lib/data";
+import { personalInfo, socialLinks } from "@/lib/data";
 
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: "700",
-});
+function InlineLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="text-foreground underline decoration-foreground/25 decoration-1 underline-offset-[3px] transition-colors hover:decoration-foreground"
+    >
+      {children}
+    </a>
+  );
+}
 
 export function IntroSection() {
   return (
-    <section className="flex flex-col gap-8 py-4">
-      <div className="flex items-center gap-4">
-        <div className="shrink-0 rounded-full sm:border sm:border-border sm:p-1 sm:shadow-sm">
-          <Image
-            src="/images/profile.png"
-            alt="Rayan Kazi"
-            width={120}
-            height={120}
-            priority
-            className="size-16 rounded-full object-cover sm:size-20"
-          />
-        </div>
-
-        <div className="flex min-w-0 flex-col gap-1.5">
-          <h1
-            className={cn(
-              raleway.className,
-              "text-xl font-bold tracking-normal text-foreground sm:text-2xl",
-            )}
-          >
-            Hey, I&apos;m Rayan
+    <section className="flex flex-col gap-8">
+      <div
+        className="animate-enter flex items-center gap-4"
+        style={{ "--enter-delay": "0ms" } as React.CSSProperties}
+      >
+        <Image
+          src="/images/profile.png"
+          alt={`${personalInfo.name.first} ${personalInfo.name.last}`}
+          width={96}
+          height={96}
+          priority
+          className="size-12 rounded-full object-cover grayscale-[15%]"
+        />
+        <div className="flex flex-col">
+          <h1 className="text-2xl leading-tight font-medium tracking-tight text-foreground">
+            {personalInfo.name.first} {personalInfo.name.last}
           </h1>
-          <div className="flex items-center gap-2 text-base text-muted-foreground sm:gap-3 sm:text-xl">
-            <span
-              className="size-2.5 shrink-0 rounded-full bg-emerald-500 sm:size-3"
-              aria-hidden="true"
-            />
-            <span className="whitespace-nowrap">
-              {personalInfo.availability.status}
-            </span>
-          </div>
+          <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+            {personalInfo.availability.isAvailable && (
+              <span className="relative flex size-1.5" aria-hidden="true">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-60" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
+              </span>
+            )}
+            {personalInfo.availability.status}
+          </p>
         </div>
       </div>
 
-      <p className="max-w-2xl text-base leading-7">
-        <span className="text-black dark:text-muted-foreground">
-          I&apos;m a 2nd year student at ASU with research interests in the
-          intersection of AI and education and experience creating beautiful
-          websites for the public.
-        </span>
-      </p>
+      <div
+        className="animate-enter flex flex-col gap-5 text-[1.0625rem] leading-relaxed"
+        style={{ "--enter-delay": "80ms" } as React.CSSProperties}
+      >
+        <p>
+          I&apos;m a second year CS student at{" "}
+          <InlineLink href="https://www.asu.edu">ASU</InlineLink>{" "}
+          where I&apos;m currently doing research on the intersection between AI
+          and education.
+        </p>
+        <p>
+          Outside of research, I love building software, tutoring and teaching
+          (doesn&apos;t matter who!), and watching anime!
+        </p>
+      </div>
+
+      <ul
+        className="animate-enter flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs"
+        style={{ "--enter-delay": "160ms" } as React.CSSProperties}
+      >
+        {socialLinks.map((link) => (
+          <li key={link.label}>
+            <a
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+              className="group inline-flex items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {link.label}
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              >
+                ↗
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

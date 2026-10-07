@@ -56,3 +56,20 @@ export function formatDateToAgo(dateString: string) {
     return dateString;
   }
 }
+
+const shortMonthFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+/** Parses a YYYY-MM string into a UTC date on the first of that month */
+export function parseYearMonth(value: string) {
+  const [year, month] = value.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, 1));
+}
+
+/** Formats a YYYY-MM string as e.g. "Apr 2026" */
+export function formatYearMonth(value: string) {
+  return shortMonthFormatter.format(parseYearMonth(value));
+}
