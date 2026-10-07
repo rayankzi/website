@@ -1,6 +1,7 @@
 import { EducationSection } from "@/components/education-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { IntroSection } from "@/components/intro-section";
+import { ProjectsSection } from "@/components/projects-section";
 
 export const metadata = {
   title: "Home",
@@ -15,6 +16,7 @@ export default function HomePage() {
       <IntroSection />
       <ExperienceSection />
       <EducationSection />
+      <ProjectsSection />
     </div>
   );
 }

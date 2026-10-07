@@ -57,18 +57,14 @@ export function IntroSection() {
         style={{ "--enter-delay": "80ms" } as React.CSSProperties}
       >
         <p>
-          I&apos;m a second-year computer science student at{" "}
-          <InlineLink href="https://www.asu.edu">
-            Arizona State University
-          </InlineLink>
-          , where I study artificial intelligence through Barrett, the Honors
-          College. My research sits at the intersection of AI and education.
+          I&apos;m a second year CS student at{" "}
+          <InlineLink href="https://www.asu.edu">ASU</InlineLink>{" "}
+          where I&apos;m currently doing research on the intersection between AI
+          and education.
         </p>
         <p>
-          Outside of research, I build software people actually use — from
-          nonprofit websites and internal tools to the backend behind
-          ASU&apos;s campus maps. I care about clean interfaces, clear
-          documentation, and shipping things that last.
+          Outside of research, I love building software, tutoring and teaching
+          (doesn&apos;t matter who!), and watching anime!
         </p>
       </div>
 

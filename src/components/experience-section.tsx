@@ -2,7 +2,7 @@ import {
   ExperienceTimeline,
   type TimelineItem,
 } from "@/components/experience-timeline";
-import { workExperience } from "@/lib/data";
+import { personalInfo, workExperience } from "@/lib/data";
 import { formatYearMonth, parseYearMonth } from "@/lib/utils";
 
 function toMonths(date: Date) {
@@ -53,9 +53,23 @@ export function ExperienceSection() {
       className="animate-enter flex scroll-mt-12 flex-col gap-6"
       style={{ "--enter-delay": "240ms" } as React.CSSProperties}
     >
-      <h2 className="font-mono text-xs tracking-wide text-muted-foreground uppercase">
-        Experience
-      </h2>
+      <header className="flex items-baseline justify-between font-mono text-xs tracking-wide text-muted-foreground uppercase">
+        <h2>Experience</h2>
+        <a
+          href={personalInfo.resumeUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="group inline-flex items-center gap-1 transition-colors hover:text-foreground"
+        >
+          Resume
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          >
+            ↗
+          </span>
+        </a>
+      </header>
 
       <ExperienceTimeline
         items={items}

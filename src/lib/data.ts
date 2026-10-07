@@ -17,6 +17,8 @@ export const personalInfo = {
     isAvailable: true,
   },
   email: "rkazi1@asu.edu",
+  resumeUrl:
+    "https://drive.google.com/file/d/1Iy21f8SgFow1BJd072kYyjVtAKlYwN96/view?usp=sharing",
   portfolioYear: new Date().getFullYear().toString(),
 };
 
@@ -46,12 +48,34 @@ export interface WorkExperience {
 
 export const workExperience: WorkExperience[] = [
   {
-    start: "2026-04",
-    role: "Undergraduate Researcher",
-    company: "Arizona State University",
+    start: "2026-08",
+    role: "Technology Consultant",
+    company: "ASU Enterprise Technology",
     longBullets: [
-      "Working with Dr. Hua Wei and Dr. Yi Zheng to implement ICAP framework on agentic AI framework for education",
-      "More coming soon ✌️",
+      "Advised 20+ students and faculty members on software installation, technology selection, and best practices based on their individual needs",
+      "Maintained an 80% satisfaction rate by providing effective troubleshooting of software and connectivity issues",
+      "Reduced average response time by 20% by triaging requests and sending customers to consultants with relevant experience",
+    ],
+  },
+  {
+    start: "2026-08",
+    role: "UGLA – FSE 100",
+    company: "Ira A Fulton Schools of Engineering",
+    longBullets: [
+      "Supported foundational development of over 40+ first-year engineering students through personalized mentorship and technical guidance",
+      "Assisted students with hands-on Arduino projects and helped them troubleshoot hardware and software issues",
+      "Improved course delivery across 2 class sections by coordinating instruction with professor and other UGTAs",
+    ],
+  },
+  {
+    start: "2026-04",
+    role: "Undergraduate Research Assistant",
+    company: "DaRL Group",
+    longBullets: [
+      "Expanded AI-generated presentation Python workflow by integrating 20+ new styles from widely used Claude Code Skills",
+      "Increased engagement by 30% through MathTex equation formatting in STEM-focused presentations",
+      "Improved visual consistency across 100% of AI-generated videos by introducing new unified style framework",
+      "Collaborated with 3 PhD students to elevate code quality and ensure seamless integration into published research",
     ],
   },
   {
@@ -113,7 +137,7 @@ export const workExperience: WorkExperience[] = [
 
 export const education = [
   {
-    year: "2028",
+    year: "May 2028",
     degree: "Bachelor of Science, Computer Science",
     university: "Arizona State University",
     highlighted: {
@@ -122,38 +146,36 @@ export const education = [
     },
     description: [
       "Concentration: Artificial Intelligence",
-      "Relevant Coursework: Object Oriented Programming in Java, Computing in C/C++",
+      "Relevant Coursework: Data Structures and Algorithms, Cybersecurity, Engineering Statistics and Probability, Applied Linear Algebra",
     ],
   },
 ];
 
-export const projects = [
+export interface Project {
+  title: string;
+  description: string;
+  year: string;
+  tech: string[];
+  links: { label: string; href: string }[];
+}
+
+export const projects: Project[] = [
   {
-    title: "Design System Library",
-    description:
-      "A comprehensive component library built with React and TypeScript, featuring 50+ accessible components.",
-    date: "2024",
-    thumbnail: "/placeholder.svg?height=400&width=600",
+    title: "Immerse",
+    description: "A Chrome extension that minimizes distractions for students.",
+    year: "2024",
+    tech: [],
+    links: [],
   },
   {
-    title: "AI Content Generator",
+    title: "Taskmaster",
     description:
-      "Machine learning powered tool that generates marketing copy and blog content using GPT-4.",
-    date: "2024",
-    thumbnail: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    title: "E-commerce Dashboard",
-    description:
-      "Real-time analytics dashboard for online stores with sales tracking and inventory management.",
-    date: "2023",
-    thumbnail: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    title: "Task Management App",
-    description:
-      "Collaborative project management tool with drag-and-drop kanban boards and team features.",
-    date: "2023",
-    thumbnail: "/placeholder.svg?height=400&width=600",
+      "An all-in-one task manager with batch task uploads, built for the Appwrite x Hashnode hackathon.",
+    year: "2023",
+    tech: ["Next.js", "Tailwind CSS", "Appwrite", "NextAuth"],
+    links: [
+      { label: "Live", href: "https://taskmaster-smoky.vercel.app/" },
+      { label: "Code", href: "https://github.com/rocketburst/taskmaster" },
+    ],
   },
 ];

@@ -35,7 +35,7 @@ export function EducationSection() {
                 </span>
               </div>
               <span className="shrink-0 font-mono text-xs text-muted-foreground sm:pt-1">
-                Class of {item.year}
+                {item.year}
               </span>
             </div>
 
